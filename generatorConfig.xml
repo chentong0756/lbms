@@ -19,27 +19,42 @@
     <javaModelGenerator targetPackage="com.lbms.domain" targetProject="lbms" />
     <sqlMapGenerator targetPackage="com.lbms.mapping" targetProject="lbms" />
     <javaClientGenerator targetPackage="com.lbms.dao" targetProject="lbms" type="MIXEDMAPPER" />
-     <table tableName="" domainObjectName=""
+     <table tableName="administrator" domainObjectName="Administrator"
     		enableCountByExample="false" enableUpdateByExample="false"
     		enableDeleteByExample="false" enableSelectByExample="false"
     		selectByExampleQueryId="false">
     </table>
-    <table tableName="" domainObjectName=""
+    <table tableName="batch" domainObjectName="Batch"
     		enableCountByExample="false" enableUpdateByExample="false"
     		enableDeleteByExample="false" enableSelectByExample="false"
     		selectByExampleQueryId="false">
     </table>
-    <table tableName="" domainObjectName=""
+    <table tableName="cipher" domainObjectName="Cipher"
     		enableCountByExample="false" enableUpdateByExample="false"
     		enableDeleteByExample="false" enableSelectByExample="false"
     		selectByExampleQueryId="false">
     </table>
-    <table tableName="" domainObjectName=""
+    <table tableName="item" domainObjectName="Item"
     		enableCountByExample="false" enableUpdateByExample="false"
     		enableDeleteByExample="false" enableSelectByExample="false"
     		selectByExampleQueryId="false">
     </table>
-    <table tableName="" domainObjectName=""
+    <table tableName="notice" domainObjectName="Notice"
+    		enableCountByExample="false" enableUpdateByExample="false"
+    		enableDeleteByExample="false" enableSelectByExample="false"
+    		selectByExampleQueryId="false">
+    </table>
+    <table tableName="student" domainObjectName="Student"
+    		enableCountByExample="false" enableUpdateByExample="false"
+    		enableDeleteByExample="false" enableSelectByExample="false"
+    		selectByExampleQueryId="false">
+    </table>
+    <table tableName="teacher" domainObjectName="Teacher"
+    		enableCountByExample="false" enableUpdateByExample="false"
+    		enableDeleteByExample="false" enableSelectByExample="false"
+    		selectByExampleQueryId="false">
+    </table>
+    <table tableName="test" domainObjectName="Test"
     		enableCountByExample="false" enableUpdateByExample="false"
     		enableDeleteByExample="false" enableSelectByExample="false"
     		selectByExampleQueryId="false">

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbms.dao.AdministratorMapper">
+  <resultMap id="BaseResultMap" type="com.lbms.domain.Administrator">
+    <id column="admid" jdbcType="INTEGER" property="admid" />
+    <result column="itemid" jdbcType="INTEGER" property="itemid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    admid, itemid, name, sex, contact
+  </sql>
+  <insert id="insertSelective" parameterType="com.lbms.domain.Administrator">
+    insert into administrator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="admid != null">
+        admid,
+      </if>
+      <if test="itemid != null">
+        itemid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="admid != null">
+        #{admid,jdbcType=INTEGER},
+      </if>
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lbms.domain.Administrator">
+    update administrator
+    <set>
+      <if test="itemid != null">
+        itemid = #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where admid = #{admid,jdbcType=INTEGER}
+  </update>
+</mapper>

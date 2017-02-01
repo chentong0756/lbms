@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbms.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.lbms.domain.Student">
+    <id column="numid" jdbcType="INTEGER" property="numid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="specialization" jdbcType="VARCHAR" property="specialization" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    numid, name, sex, specialization, grade, date, contact
+  </sql>
+  <insert id="insertSelective" parameterType="com.lbms.domain.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="numid != null">
+        numid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="specialization != null">
+        specialization,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="numid != null">
+        #{numid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="specialization != null">
+        #{specialization,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lbms.domain.Student">
+    update student
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="specialization != null">
+        specialization = #{specialization,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where numid = #{numid,jdbcType=INTEGER}
+  </update>
+</mapper>

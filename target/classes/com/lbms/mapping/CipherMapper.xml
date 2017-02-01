@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbms.dao.CipherMapper">
+  <resultMap id="BaseResultMap" type="com.lbms.domain.Cipher">
+    <id column="cipid" jdbcType="INTEGER" property="cipid" />
+    <result column="admid" jdbcType="INTEGER" property="admid" />
+    <result column="teaid" jdbcType="INTEGER" property="teaid" />
+    <result column="numid" jdbcType="INTEGER" property="numid" />
+    <result column="cipher" jdbcType="VARCHAR" property="cipher" />
+    <result column="power" jdbcType="VARCHAR" property="power" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cipid, admid, teaid, numid, cipher, power
+  </sql>
+  <insert id="insertSelective" parameterType="com.lbms.domain.Cipher">
+    insert into cipher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cipid != null">
+        cipid,
+      </if>
+      <if test="admid != null">
+        admid,
+      </if>
+      <if test="teaid != null">
+        teaid,
+      </if>
+      <if test="numid != null">
+        numid,
+      </if>
+      <if test="cipher != null">
+        cipher,
+      </if>
+      <if test="power != null">
+        power,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cipid != null">
+        #{cipid,jdbcType=INTEGER},
+      </if>
+      <if test="admid != null">
+        #{admid,jdbcType=INTEGER},
+      </if>
+      <if test="teaid != null">
+        #{teaid,jdbcType=INTEGER},
+      </if>
+      <if test="numid != null">
+        #{numid,jdbcType=INTEGER},
+      </if>
+      <if test="cipher != null">
+        #{cipher,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null">
+        #{power,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lbms.domain.Cipher">
+    update cipher
+    <set>
+      <if test="admid != null">
+        admid = #{admid,jdbcType=INTEGER},
+      </if>
+      <if test="teaid != null">
+        teaid = #{teaid,jdbcType=INTEGER},
+      </if>
+      <if test="numid != null">
+        numid = #{numid,jdbcType=INTEGER},
+      </if>
+      <if test="cipher != null">
+        cipher = #{cipher,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null">
+        power = #{power,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cipid = #{cipid,jdbcType=INTEGER}
+  </update>
+</mapper>
