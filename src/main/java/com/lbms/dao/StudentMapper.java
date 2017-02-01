@@ -1,11 +1,15 @@
 package com.lbms.dao;
 
-import com.lbms.domain.Student;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import com.lbms.domain.Student;
 
 public interface StudentMapper {
     @Delete({
@@ -48,4 +52,9 @@ public interface StudentMapper {
         "where numid = #{numid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Student record);
+    int getAllRecord();
+    List<Student> getStudentByPage(@Param(value = "startindex") int startindex,
+			@Param(value = "pagesize") int pagesize);
+    List<Student> getHasOrderStudent(@Param(value="batId")int batId, @Param(value = "startindex") int startindex,
+			@Param(value = "pagesize") int pagesize);
 }

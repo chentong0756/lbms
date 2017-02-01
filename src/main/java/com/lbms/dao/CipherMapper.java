@@ -47,4 +47,10 @@ public interface CipherMapper {
         "where cipid = #{cipid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Cipher record);
+    @Update({
+        "update cipher",
+        "set cipher = #{cipher,jdbcType=VARCHAR} ",
+        "where admid = #{adId,jdbcType=INTEGER}"
+    })
+    int updateByAdId(String cipher, Integer adId);
 }

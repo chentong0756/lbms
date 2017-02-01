@@ -66,4 +66,13 @@
     </set>
     where admid = #{admid,jdbcType=INTEGER}
   </update>
+   <select id="getAdByPage" resultType="com.lbms.domain.Administrator">
+   select * from administrator
+   		limit #{startindex},#{pagesize}
+  </select>
+  <select id="getAllRecord" resultType="int">
+  	select
+		count(*) from administrator
+  
+  </select>
 </mapper>

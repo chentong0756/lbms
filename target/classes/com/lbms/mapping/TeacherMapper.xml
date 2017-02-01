@@ -86,4 +86,13 @@
     </set>
     where teaid = #{teaid,jdbcType=INTEGER}
   </update>
+  <select id="getAllRecord" resultType="int">
+  	select
+		count(*) from teacher
+  
+  </select>
+  <select id="getItemByPage" resultType="com.lbms.domain.Teacher">
+   select * from teacher 
+   		limit #{startindex},#{pagesize}
+  </select>
 </mapper>

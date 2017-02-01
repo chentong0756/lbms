@@ -26,7 +26,7 @@ public interface AdministratorService {
 	public boolean DeleteStudentById(Integer numId);
 	public boolean UpdateStudent(Student student);
 	public Page GetStudentByPage(int currentPage);
-	public Page GetHasOrderStudent(Integer itemId,int currentPage);
+	public Page GetHasOrderStudent(Integer batId,int currentPage);
 	public boolean AddNotice(Notice notice);
 	public boolean DeleteNoticeById(Integer noticeId);
 	public boolean UpdateNotice(Notice notice);

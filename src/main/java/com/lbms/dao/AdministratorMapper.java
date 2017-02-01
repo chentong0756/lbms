@@ -1,11 +1,15 @@
 package com.lbms.dao;
 
-import com.lbms.domain.Administrator;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import com.lbms.domain.Administrator;
 
 public interface AdministratorMapper {
     @Delete({
@@ -44,4 +48,7 @@ public interface AdministratorMapper {
         "where admid = #{admid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Administrator record);
+    List<Administrator> getAdByPage(@Param(value = "startindex") int startindex,
+			@Param(value = "pagesize") int pagesize);
+    int getAllRecord();
 }

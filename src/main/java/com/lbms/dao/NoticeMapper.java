@@ -1,11 +1,15 @@
 package com.lbms.dao;
 
-import com.lbms.domain.Notice;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import com.lbms.domain.Notice;
 
 public interface NoticeMapper {
     @Delete({
@@ -43,4 +47,7 @@ public interface NoticeMapper {
         "where noticeid = #{noticeid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Notice record);
+    int getAllRecord();
+    List<Notice> getNoticeByPage(@Param(value = "startindex") int startindex,
+			@Param(value = "pagesize") int pagesize);
 }

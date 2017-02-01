@@ -86,4 +86,13 @@
     </set>
     where batid = #{batid,jdbcType=INTEGER}
   </update>
+  <select id="getAllRecord" resultType="int">
+  	select
+		count(*) from item
+  
+  </select>
+  <select id="getItemByPage" resultType="com.lbms.domain.Batch">
+   select * from batch 
+   		limit #{startindex},#{pagesize}
+  </select>
 </mapper>

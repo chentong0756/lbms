@@ -86,4 +86,17 @@
     </set>
     where numid = #{numid,jdbcType=INTEGER}
   </update>
+  <select id="getAllRecord" resultType="int">
+  	select
+		count(*) from student
+  
+  </select>
+  <select id="getStudentByPage" resultType="com.lbms.domain.Student">
+   select * from student 
+   		limit #{startindex},#{pagesize}
+  </select>
+  <select id="getHasOrderStudent" resultType="com.lbms.domain.Student">
+  	 select * from Student where numid in (select * from test where batid=#{batId})
+   		limit #{startindex},#{pagesize}
+  </select>
 </mapper>

@@ -56,4 +56,13 @@
     </set>
     where noticeid = #{noticeid,jdbcType=INTEGER}
   </update>
+  <select id="getNoticeByPage" resultType="com.lbms.domain.Item">
+   select * from notice
+   		limit #{startindex},#{pagesize}
+  </select>
+  <select id="getAllRecord" resultType="int">
+  	select
+		count(*) from notice
+  
+  </select>
 </mapper>

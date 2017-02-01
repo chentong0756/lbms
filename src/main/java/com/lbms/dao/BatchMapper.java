@@ -1,11 +1,15 @@
 package com.lbms.dao;
 
-import com.lbms.domain.Batch;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import com.lbms.domain.Batch;
 
 public interface BatchMapper {
     @Delete({
@@ -50,4 +54,7 @@ public interface BatchMapper {
         "where batid = #{batid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Batch record);
+    int getAllRecord();
+    List<Batch> getItemByPage(@Param(value = "startindex") int startindex,
+			@Param(value = "pagesize") int pagesize);
 }
