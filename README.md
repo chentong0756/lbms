@@ -1,0 +1,3 @@
+# lbms
+
+laboratory manage system
