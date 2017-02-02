@@ -99,4 +99,8 @@
   	 select * from Student where numid in (select * from test where batid=#{batId})
    		limit #{startindex},#{pagesize}
   </select>
+  <select id="getHasOrderBatch" resultType="com.lbms.domain.Batch">
+  	 select * from batch where batid in (select * from test where numid=#{numId})
+   		limit #{startindex},#{pagesize}
+  </select>
 </mapper>

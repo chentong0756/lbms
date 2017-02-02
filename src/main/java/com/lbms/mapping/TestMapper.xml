@@ -76,4 +76,8 @@
     </set>
     where testid = #{testid,jdbcType=INTEGER}
   </update>
+  <select id="selectByNumAndBatch" resultType="com.lbms.domain.Test">
+  		select * from test where batid=#{batId} and numid=#{numId}
+  
+  </select>
 </mapper>

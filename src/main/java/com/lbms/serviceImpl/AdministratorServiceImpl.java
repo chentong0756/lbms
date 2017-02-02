@@ -99,7 +99,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 		int pagesize=Const.INDEX_INFORMATION_PAGE_SIZE;
 		Page page=new Page(currentPage,pagesize,totalRecord);
 		int startindex=(currentPage-1)*pagesize;
-		List<Batch> batches=batchDao.getItemByPage(startindex, pagesize);
+		List<Batch> batches=batchDao.getBatchByPage(startindex, pagesize);
 		page.setRecordList(batches);
 		return page;
 	}

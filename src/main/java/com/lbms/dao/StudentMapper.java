@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.lbms.domain.Batch;
 import com.lbms.domain.Student;
 
 public interface StudentMapper {
@@ -56,5 +57,7 @@ public interface StudentMapper {
     List<Student> getStudentByPage(@Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);
     List<Student> getHasOrderStudent(@Param(value="batId")int batId, @Param(value = "startindex") int startindex,
+			@Param(value = "pagesize") int pagesize);
+    List<Batch> getHasOrderBatch(@Param(value="numId")Integer numId, @Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);
 }

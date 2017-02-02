@@ -1,11 +1,13 @@
 package com.lbms.dao;
 
-import com.lbms.domain.Test;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import com.lbms.domain.Test;
 
 public interface TestMapper {
     @Delete({
@@ -47,4 +49,7 @@ public interface TestMapper {
         "where testid = #{testid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Test record);
+    
+    Test selectByNumAndBatch(@Param("batId")Integer batId, @Param("numId")Integer numId);
+    
 }

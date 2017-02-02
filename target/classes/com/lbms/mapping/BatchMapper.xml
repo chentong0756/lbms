@@ -91,8 +91,13 @@
 		count(*) from item
   
   </select>
-  <select id="getItemByPage" resultType="com.lbms.domain.Batch">
+  <select id="getBatchByPage" resultType="com.lbms.domain.Batch">
    select * from batch 
    		limit #{startindex},#{pagesize}
   </select>
+   <select id="getBatchByTeaId" resultType="com.lbms.domain.Batch">
+   select * from batch where teaid=#{teaId}
+   		limit #{startindex},#{pagesize}
+  </select>
+  
 </mapper>

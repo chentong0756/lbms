@@ -53,4 +53,16 @@ public interface CipherMapper {
         "where admid = #{adId,jdbcType=INTEGER}"
     })
     int updateByAdId(String cipher, Integer adId);
+    @Update({
+        "update cipher",
+        "set cipher = #{cipher,jdbcType=VARCHAR} ",
+        "where numid = #{numId,jdbcType=INTEGER}"
+    })
+    int updateByNumId(String cipher, Integer numId);
+    @Update({
+        "update cipher",
+        "set cipher = #{cipher,jdbcType=VARCHAR} ",
+        "where teaid = #{teaId,jdbcType=INTEGER}"
+    })
+    int updateByTeaId(String cipher, Integer teaId);
 }

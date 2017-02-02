@@ -55,6 +55,8 @@ public interface BatchMapper {
     })
     int updateByPrimaryKey(Batch record);
     int getAllRecord();
-    List<Batch> getItemByPage(@Param(value = "startindex") int startindex,
+    List<Batch> getBatchByPage(@Param(value = "startindex") int startindex,
+			@Param(value = "pagesize") int pagesize);
+    List<Batch> getBatchByTeaId(@Param(value="teaId")Integer teaId,@Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);
 }
