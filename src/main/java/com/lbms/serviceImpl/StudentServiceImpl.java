@@ -86,6 +86,12 @@ public class StudentServiceImpl implements StudentService{
 		
 		return false;
 	}
+
+	public Student GetStudentById(Integer numId) {
+		// TODO Auto-generated method stub
+		return studentDao.selectByPrimaryKey(numId);
+		
+	}
 	
 	
 

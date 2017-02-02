@@ -36,6 +36,7 @@ public interface AdministratorService {
 	public boolean DeleteAdministratorById(Integer adId);
 	public Page GetAdministratorByPage(int currentPage);
 	public boolean UpdateCipherByAdministratorId(String password,Integer adId);
+	public Administrator GetAdById(Integer adId);
 	
 	
 	

@@ -12,4 +12,5 @@ public interface TeacherService {
 	public Test GetTestByStudentIdAndBatId(Integer batId,Integer numId);
 	public Page GetNoticeByPage(Integer currentPage);
 	public boolean UpdateCipherByTeacherId(String password,Integer teaId);
+	public Teacher GetTeacherById(Integer teaId);
 }

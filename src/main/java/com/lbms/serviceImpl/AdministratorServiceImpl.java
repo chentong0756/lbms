@@ -279,6 +279,12 @@ public class AdministratorServiceImpl implements AdministratorService{
 			return true;
 		return false;
 	}
+
+	public Administrator GetAdById(Integer adId) {
+		// TODO Auto-generated method stub
+		
+		return adDao.selectByPrimaryKey(adId);
+	}
 	
 	
 

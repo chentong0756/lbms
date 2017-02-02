@@ -12,6 +12,7 @@ public interface StudentService {
 	public Test GetTestByNumAndBatch(Integer batchId,Integer numId);
 	public Page GetNoticeByPage(Integer currentPage);
 	public boolean UpdateCipherByStudentId(String password,Integer numId);
+	public Student GetStudentById(Integer numId);
 	
 
 }

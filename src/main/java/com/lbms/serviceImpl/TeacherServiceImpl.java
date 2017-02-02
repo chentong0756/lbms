@@ -104,6 +104,11 @@ public class TeacherServiceImpl implements TeacherService{
 		}
 		return false;
 	}
+
+	public Teacher GetTeacherById(Integer teaId) {
+		// TODO Auto-generated method stub
+		return teacherDao.selectByPrimaryKey(teaId);
+	}
 	
 	
 

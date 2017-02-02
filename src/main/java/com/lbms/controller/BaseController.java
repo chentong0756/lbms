@@ -20,7 +20,7 @@ public class BaseController {
 	@Autowired
 	protected StudentService studentService;
 	@Autowired
-	protected TeacherService replyService;
+	protected TeacherService teacherService;
 	@Autowired
 	protected AdministratorService adService;
 	@Autowired
