@@ -95,4 +95,7 @@
    select * from teacher 
    		limit #{startindex},#{pagesize}
   </select>
+  <select id="selectLastId" resultType="int">  
+         select LAST_INSERT_ID()   
+  </select> 
 </mapper>

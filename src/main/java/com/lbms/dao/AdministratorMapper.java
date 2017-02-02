@@ -51,4 +51,5 @@ public interface AdministratorMapper {
     List<Administrator> getAdByPage(@Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);
     int getAllRecord();
+    int selectLastId();
 }

@@ -53,6 +53,7 @@ public interface StudentMapper {
         "where numid = #{numid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Student record);
+    int selectLastId();
     int getAllRecord();
     List<Student> getStudentByPage(@Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);

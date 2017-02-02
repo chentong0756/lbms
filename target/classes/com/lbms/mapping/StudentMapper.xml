@@ -103,4 +103,7 @@
   	 select * from batch where batid in (select * from test where numid=#{numId})
    		limit #{startindex},#{pagesize}
   </select>
+  <select id="selectLastId" resultType="int">  
+         select LAST_INSERT_ID()   
+  </select> 
 </mapper>

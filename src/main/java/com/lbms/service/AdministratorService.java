@@ -18,11 +18,11 @@ public interface AdministratorService {
 	public boolean UpdateBatch(Batch batch);
 	public boolean DeleteBatchById(Integer batchId);
 	public Page GetBatchByPage(int currentPage);
-	public boolean AddTeacher(Teacher teacher);
+	public String AddTeacher(Teacher teacher);
 	public boolean UpdateTeacher(Teacher teacher);
 	public boolean DeleteTeacherById(Integer teacherId);
 	public Page GetTeacherByPage(int currentPage);
-	public boolean AddStudent(Student student);
+	public String AddStudent(Student student);
 	public boolean DeleteStudentById(Integer numId);
 	public boolean UpdateStudent(Student student);
 	public Page GetStudentByPage(int currentPage);
@@ -31,7 +31,7 @@ public interface AdministratorService {
 	public boolean DeleteNoticeById(Integer noticeId);
 	public boolean UpdateNotice(Notice notice);
 	public Page GetNoticeByPage(Integer currentPage);
-	public boolean AddNewAdministrator(Administrator ad);
+	public String AddNewAdministrator(Administrator ad);
 	public boolean UpdateAdministrator(Administrator ad);
 	public boolean DeleteAdministratorById(Integer adId);
 	public Page GetAdministratorByPage(int currentPage);

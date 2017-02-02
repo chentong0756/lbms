@@ -52,6 +52,7 @@ public interface TeacherMapper {
         "where teaid = #{teaid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Teacher record);
+    int selectLastId();
     int getAllRecord();
     List<Teacher> getTeacherByPage(@Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);

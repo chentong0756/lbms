@@ -13,6 +13,8 @@ public class Cipher {
 
     private String power;
 
+    private String username;
+
     public Integer getCipid() {
         return cipid;
     }
@@ -59,5 +61,13 @@ public class Cipher {
 
     public void setPower(String power) {
         this.power = power;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

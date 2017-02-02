@@ -14,6 +14,7 @@ import com.lbms.dao.StudentMapper;
 import com.lbms.dao.TeacherMapper;
 import com.lbms.domain.Administrator;
 import com.lbms.domain.Batch;
+import com.lbms.domain.Cipher;
 import com.lbms.domain.Item;
 import com.lbms.domain.Notice;
 import com.lbms.domain.Page;
@@ -21,6 +22,7 @@ import com.lbms.domain.Student;
 import com.lbms.domain.Teacher;
 import com.lbms.service.AdministratorService;
 import com.lbms.util.Const;
+import com.lbms.util.UUIDUtil;
 
 @Service
 public class AdministratorServiceImpl implements AdministratorService{
@@ -104,11 +106,21 @@ public class AdministratorServiceImpl implements AdministratorService{
 		return page;
 	}
 
-	public boolean AddTeacher(Teacher teacher) {
+	public String AddTeacher(Teacher teacher) {
 		// TODO Auto-generated method stub
-		if(teacherDao.insert(teacher)!=0)
-			return true;
-		return false;
+		if(teacherDao.insert(teacher)!=0){
+			int teaId=teacherDao.selectLastId();
+			String userName=UUIDUtil.generateShortUuid();
+			Cipher cipher=new Cipher();
+			cipher.setTeaid(teaId);
+			cipher.setUsername(userName);
+			cipher.setPower("2");
+			cipherDao.insert(cipher);
+			return userName;
+			
+		}
+			
+		return null;
 	}
 
 	public boolean UpdateTeacher(Teacher teacher) {
@@ -136,11 +148,19 @@ public class AdministratorServiceImpl implements AdministratorService{
 		return page;
 	}
 
-	public boolean AddStudent(Student student) {
+	public String AddStudent(Student student) {
 		// TODO Auto-generated method stub
-		if(studentDao.insert(student)!=0)
-			return true;
-		return false;
+		if(studentDao.insert(student)!=0){
+			int numId=studentDao.selectLastId();
+			String userName=UUIDUtil.generateShortUuid();
+			Cipher cipher=new Cipher();
+			cipher.setUsername(userName);
+			cipher.setNumid(numId);
+			cipher.setPower("3");
+			return userName;
+		}
+			
+		return null;
 	}
 
 	public boolean DeleteStudentById(Integer numId) {
@@ -213,11 +233,19 @@ public class AdministratorServiceImpl implements AdministratorService{
 		return page;
 	}
 
-	public boolean AddNewAdministrator(Administrator ad) {
+	public String AddNewAdministrator(Administrator ad) {
 		// TODO Auto-generated method stub
-		if(adDao.insert(ad)!=0)
-			return true;
-		return false;
+		if(adDao.insert(ad)!=0){
+			int adId=adDao.selectLastId();
+			String userName=UUIDUtil.generateShortUuid();
+			Cipher cipher=new Cipher();
+			cipher.setUsername(userName);
+			cipher.setAdmid(adId);
+			cipher.setPower("1");
+			return userName;
+		}
+		return null;
+		
 	}
 
 	public boolean UpdateAdministrator(Administrator ad) {
@@ -251,7 +279,6 @@ public class AdministratorServiceImpl implements AdministratorService{
 			return true;
 		return false;
 	}
-	
 	
 	
 
