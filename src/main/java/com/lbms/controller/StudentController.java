@@ -90,5 +90,21 @@ public class StudentController extends BaseController{
 		return resultInfo;
 		
 	}
-	
+	@RequestMapping(value="/student/{batchId}&{currentPage}",method=RequestMethod.GET)
+	public ResultInfo GetStudentByBatch(@PathVariable("batchId")Integer batchId,@PathVariable("currentPage")Integer currentPage){
+		ResultInfo resultInfo=new ResultInfo();
+		Page page=null;
+		if(batchId!=null){
+			page=teacherService.GetHasOrderStudentByBatchId(batchId, currentPage);
+			if(page!=null){
+				resultInfo.setCode(200);
+				resultInfo.setObject(page);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setObject(ResultInfo.GET_ERROR);
+		return resultInfo;
+		
+	}
 }

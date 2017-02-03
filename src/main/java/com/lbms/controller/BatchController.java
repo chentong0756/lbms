@@ -73,5 +73,56 @@ public class BatchController extends BaseController{
 		return resultInfo;
 		
 	}
+	@RequestMapping(value="/batch/student/{batchId}&{numId}",method=RequestMethod.PUT)
+	public ResultInfo OrderBatch(@PathVariable("batchId")Integer batchId,@PathVariable("numId")Integer numId){
+		ResultInfo resultInfo=new ResultInfo();
+		if(batchId!=null&&numId!=null){
+			if(studentService.OrderBatchById(batchId, numId)){
+				resultInfo.setCode(200);
+				resultInfo.setObject(ResultInfo.CREATE_SUCCESS);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setObject(ResultInfo.ORDER_ERROR);
+		return resultInfo;
+				
+	}
+	@RequestMapping(value="/batch/student/{numId}&{currentPage}",method=RequestMethod.GET)
+	public ResultInfo GetBatchByStudent(@PathVariable("numId")Integer numId,@PathVariable("currentPage")Integer currentPage){
+		ResultInfo resultInfo=new ResultInfo();
+		Page batches=null;
+		if(numId!=null){
+			batches=studentService.GetHasOrderBatch(numId, currentPage);
+			if(batches!=null){
+				resultInfo.setCode(200);
+				resultInfo.setObject(batches);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setObject(ResultInfo.GET_ERROR);
+		return resultInfo;
+				
+	}
+	@RequestMapping(value="/batch/teacher/{teaId}&{currentPage}",method=RequestMethod.GET)
+	public ResultInfo GetBatchByTeacher(@PathVariable("teaId")Integer teaId,@PathVariable("currentPage")Integer currentPage){
+		ResultInfo resultInfo=new ResultInfo();
+		Page batches=null;
+		if(teaId!=null){
+			batches=teacherService.GetBatchById(teaId, currentPage);
+			if(batches!=null){
+				resultInfo.setCode(200);
+				resultInfo.setObject(batches);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setObject(ResultInfo.GET_ERROR);
+		return resultInfo;
+				
+	}
+	
+	
 
 }

@@ -9,6 +9,7 @@ public class ResultInfo {
 	public final static String DELETE_ERROR="删除失败";
 	public final static String DELETE_SUCCESS="删除成功";
 	public final static String CREATE_SUCCESS="创建成功";
+	public final static String ORDER_ERROR="预约失败";
 	
 	
 	
