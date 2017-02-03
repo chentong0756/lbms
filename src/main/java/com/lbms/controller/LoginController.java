@@ -1,5 +1,15 @@
 package com.lbms.controller;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.DisabledAccountException;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.ExpiredCredentialsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,19 +19,51 @@ import com.lbms.util.ResultInfo;
 public class LoginController extends BaseController{
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST,consumes="application/json")
-	public ResultInfo Login(@RequestParam("userName")String userName,@RequestParam("password")String password,@RequestParam("power")String power){
+	public ResultInfo Login(@RequestParam("userName")String userName,@RequestParam("password")String password){
 			ResultInfo resultInfo=new ResultInfo();
-			if(userName!=null&&password!=null&&power!=null){
-				Object object=loginService.LoginByName(userName, password, power);
-				if(object!=null){
-					resultInfo.setCode(200);
-					resultInfo.setObject(object);
-					return resultInfo;
-				}
-			}
-			resultInfo.setCode(500);
-			resultInfo.setObject(ResultInfo.PASSWORD_ERROR);
-			return resultInfo;
+		    UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+		    token.setRememberMe(true);
+		    Subject subject = SecurityUtils.getSubject();
+		    try {
+	            subject.login(token);
+	            if (subject.isAuthenticated()) {
+	            	resultInfo.setCode(200);
+	            	resultInfo.setObject(ResultInfo.LOGIN_SUCCESS);
+	                return resultInfo;
+	            } else {
+	            	resultInfo.setCode(500);
+	            	resultInfo.setObject(ResultInfo.PASSWORD_ERROR);
+	                return resultInfo;
+	            }
+	        } catch (IncorrectCredentialsException e) {
+	        	resultInfo.setCode(500);
+            	resultInfo.setObject(ResultInfo.PASSWORD_ERROR);
+                return resultInfo;
+	        } catch (ExcessiveAttemptsException e) {
+	        	resultInfo.setCode(501);
+            	resultInfo.setObject(ResultInfo.LOGIN_MANY);
+                return resultInfo;
+	        } catch (LockedAccountException e) {
+	        	resultInfo.setCode(502);
+            	resultInfo.setObject(ResultInfo.USER_LOCK);
+                return resultInfo;
+	        } catch (DisabledAccountException e) {
+	        	resultInfo.setCode(502);
+            	resultInfo.setObject(ResultInfo.USER_LOCK);
+                return resultInfo;
+	        } catch (ExpiredCredentialsException e) {
+	        	resultInfo.setCode(502);
+            	resultInfo.setObject(ResultInfo.USER_LOCK);
+                return resultInfo;
+	        } catch (UnknownAccountException e) {
+	        	resultInfo.setCode(502);
+            	resultInfo.setObject(ResultInfo.USER_LOCK);
+                return resultInfo;
+	        } catch (UnauthorizedException e) {
+	        	resultInfo.setCode(503);
+            	resultInfo.setObject(ResultInfo.USER_LOCK);
+                return resultInfo;
+	        }
 	}
 
 }

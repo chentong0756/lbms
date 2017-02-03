@@ -1,4 +1,4 @@
-package com.lbms.serviceImpl;
+package com.lbms.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +9,7 @@ import com.lbms.dao.StudentMapper;
 import com.lbms.dao.TeacherMapper;
 import com.lbms.domain.Cipher;
 import com.lbms.service.LoginService;
+
 @Service
 public class LoginServiceImpl implements LoginService{
 	
@@ -25,7 +26,7 @@ public class LoginServiceImpl implements LoginService{
 		// TODO Auto-generated method stub
 		Cipher cipher=null;
 		int temp=0;
-		if((cipher=cipherDao.LoginValidate(id, password, power))!=null){
+		if((cipher=cipherDao.LoginValidate(id, password))!=null){
 			if((temp=cipher.getAdmid())!=0){
 				return adDao.selectByPrimaryKey(temp);
 			}else if((temp=cipher.getNumid())!=0){
@@ -36,7 +37,22 @@ public class LoginServiceImpl implements LoginService{
 		}
 		return null;
 	}
-	
+
+	public String GetUserByUserLoginName(String userName){
+		if(userName!=null){
+			Cipher cipher=cipherDao.GetUserByUserName(userName);
+			if(cipher.getPower().equals(0)){
+				return "root";
+			}else if(cipher.getPower().equals(1)){
+				return "admin";
+			}else if(cipher.getPower().equals(2)){
+				return "teacher";
+			}else if(cipher.getPower().equals(3)){
+				return "student";
+			}
+		}
+		return null;
+	}
 	
 
 }

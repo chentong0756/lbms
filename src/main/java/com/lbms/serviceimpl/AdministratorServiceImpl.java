@@ -1,4 +1,4 @@
-package com.lbms.serviceImpl;
+package com.lbms.serviceimpl;
 
 import java.util.List;
 

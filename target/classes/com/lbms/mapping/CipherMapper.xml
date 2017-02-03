@@ -87,6 +87,9 @@
     where cipid = #{cipid,jdbcType=INTEGER}
   </update>
   <select id="LoginValidate" resultType="com.lbms.domain.Cipher">
-  	select * from cipher where username=#{userName} and power=#{power} and cipher=#{password}
+  	select * from cipher where username=#{userName} and cipher=#{password}
+  </select>
+  <select id="GetUserByUserName" resultType="com.lbms.domain.Cipher">
+  	select * from cipher where username=#{userName}
   </select>
 </mapper>

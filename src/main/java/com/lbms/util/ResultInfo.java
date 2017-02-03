@@ -10,7 +10,9 @@ public class ResultInfo {
 	public final static String DELETE_SUCCESS="删除成功";
 	public final static String CREATE_SUCCESS="创建成功";
 	public final static String ORDER_ERROR="预约失败";
-	
+	public final static String LOGIN_SUCCESS="登录成功";
+	public final static String LOGIN_MANY="登录失败次数过多";
+	public final static String USER_LOCK="用户已被锁定";
 	
 	
 	

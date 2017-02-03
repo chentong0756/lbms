@@ -1,30 +1,25 @@
-package com.lbms.serviceImpl;
+package com.lbms.serviceimpl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.lbms.dao.BatchMapper;
 import com.lbms.dao.CipherMapper;
 import com.lbms.dao.NoticeMapper;
 import com.lbms.dao.StudentMapper;
-import com.lbms.dao.TeacherMapper;
 import com.lbms.dao.TestMapper;
 import com.lbms.domain.Batch;
 import com.lbms.domain.Notice;
 import com.lbms.domain.Page;
 import com.lbms.domain.Student;
-import com.lbms.domain.Teacher;
 import com.lbms.domain.Test;
-import com.lbms.service.TeacherService;
+import com.lbms.service.StudentService;
 import com.lbms.util.Const;
 
-public class TeacherServiceImpl implements TeacherService{
+@Service
+public class StudentServiceImpl implements StudentService{
 
-	@Autowired
-	private TeacherMapper teacherDao;
-	@Autowired
-	private BatchMapper batchDao;
 	@Autowired
 	private StudentMapper studentDao;
 	@Autowired
@@ -34,55 +29,40 @@ public class TeacherServiceImpl implements TeacherService{
 	@Autowired
 	private CipherMapper cipherDao;
 	
-	public boolean UpdateTeacher(Teacher teacher) {
+	public boolean UpdateStudent(Student student) {
 		// TODO Auto-generated method stub
-		if(teacher!=null){
-			teacherDao.updateByPrimaryKey(teacher);
+		if(studentDao.updateByPrimaryKey(student)!=0)
 			return true;
-		}
-			
 		return false;
 	}
 
-	public Page GetBatchById(Integer teaId, int currentPage) {
-		// TODO Auto-generated method stub
-		int totalRecord=batchDao.getAllRecord();
-		int pagesize=Const.INDEX_INFORMATION_PAGE_SIZE;
-		Page page=new Page(currentPage,pagesize,totalRecord);
-		int startindex=(currentPage-1)*pagesize;
-		List<Batch> batches=batchDao.getBatchByTeaId(teaId, startindex, pagesize);
-		page.setRecordList(batches);
-		return page;
-	}
-
-	public Page GetHasOrderStudentByBatchId(Integer batId, int currentPage) {
+	public Page GetHasOrderBatch(Integer num, int currentPage) {
 		// TODO Auto-generated method stub
 		int totalRecord=studentDao.getAllRecord();
 		int pagesize=Const.INDEX_INFORMATION_PAGE_SIZE;
 		Page page=new Page(currentPage,pagesize,totalRecord);
 		int startindex=(currentPage-1)*pagesize;
-		List<Student> students=studentDao.getHasOrderStudent(batId, startindex, pagesize);
-		page.setRecordList(students);
+		List<Batch> batches=studentDao.getHasOrderBatch(num, startindex, pagesize);
+		page.setRecordList(batches);
 		return page;
-		
 	}
 
-	public boolean UpdateTest(Test test) {
+	public boolean OrderBatchById(Integer batchId,Integer numId) {
 		// TODO Auto-generated method stub
-		if(test!=null){
+		if(batchId!=null&&numId!=null){
+			Test test=new Test();
+			test.setBatid(batchId);
+			test.setNumid(numId);
 			testDao.insert(test);
 			return true;
+			
 		}
 		return false;
 	}
 
-	public Test GetTestByStudentIdAndBatId(Integer batId, Integer numId) {
+	public Test GetTestByNumAndBatch(Integer batchId, Integer numId) {
 		// TODO Auto-generated method stub
-		Test test=null;
-		if(batId!=null&&numId!=null){
-			test=testDao.selectByNumAndBatch(batId, numId);
-		}
-		return test;
+		return null;
 	}
 
 	public Page GetNoticeByPage(Integer currentPage) {
@@ -96,18 +76,21 @@ public class TeacherServiceImpl implements TeacherService{
 		return page;
 	}
 
-	public boolean UpdateCipherByTeacherId(String password, Integer teaId) {
+	public boolean UpdateCipherByStudentId(String password, Integer numId) {
 		// TODO Auto-generated method stub
-		if(password!=null&&teaId!=null){
-			cipherDao.updateByTeaId(password, teaId);
+		if(password!=null&&numId!=null){
+			cipherDao.updateByNumId(password, numId);
 			return true;
 		}
+			
+		
 		return false;
 	}
 
-	public Teacher GetTeacherById(Integer teaId) {
+	public Student GetStudentById(Integer numId) {
 		// TODO Auto-generated method stub
-		return teacherDao.selectByPrimaryKey(teaId);
+		return studentDao.selectByPrimaryKey(numId);
+		
 	}
 	
 	

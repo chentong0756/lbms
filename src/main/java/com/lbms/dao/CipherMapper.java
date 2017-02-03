@@ -71,6 +71,7 @@ public interface CipherMapper {
 	    })
 	    int updateByTeaId(String cipher, Integer teaId);
 	    
-	    Cipher LoginValidate(@Param("userName")String userName,@Param("password")String password,@Param("power")String power);
+	    Cipher LoginValidate(@Param("userName")String userName,@Param("password")String password);
+	    Cipher GetUserByUserName(@Param("userName")String userName);
 	    
 }

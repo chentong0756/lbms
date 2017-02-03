@@ -2,12 +2,12 @@ package com.lbms.config;
 
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.lbms.filter.UserRealm;
 
 @Configuration
 public class ShiroConfig {
@@ -19,24 +19,40 @@ public class ShiroConfig {
 	public MemoryConstrainedCacheManager memoryConstrainedCacheManager(){
 		return new MemoryConstrainedCacheManager();
 	}
-	
 	@Bean
-	public ShiroFilterFactoryBean shiroFilterFactoryBean(){
+	public DefaultWebSecurityManager securityManager(UserRealm userRealm,MemoryConstrainedCacheManager cacheManager){
+		DefaultWebSecurityManager securityManager=new DefaultWebSecurityManager();
+		securityManager.setRealm(userRealm);
+		securityManager.setCacheManager(cacheManager);
+		return securityManager;
+	}
+	@Bean
+	public UserRealm userRealm(){
+		return new UserRealm();
+	}
+	@Bean
+	public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager){
 		ShiroFilterFactoryBean shiroFilter=new ShiroFilterFactoryBean();
-		shiroFilter.setSecurityManager(new DefaultWebSecurityManager());
+		shiroFilter.setSecurityManager(securityManager);
 		shiroFilter.setLoginUrl("/login");
 		shiroFilter.setUnauthorizedUrl("/");
+		String shiroFilterChainDefinitions="/login=anno "
+				+ "/administrator=authc,perms[root:0] "
+				+ "/student/**=authc,perms[admin:1] "
+				+ "/student=perms[user:UPDATE] "
+				+ "/student=perms[user:GET] ";
+		shiroFilter.setFilterChainDefinitions(shiroFilterChainDefinitions);
 		return shiroFilter;
 	}
-	@Bean
-	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
-		return new DefaultAdvisorAutoProxyCreator();
-	}
-	@Bean
-	public AuthorizationAttributeSourceAdvisor duthorizationAttributeSourceAdvisor(){
-		AuthorizationAttributeSourceAdvisor ad=new AuthorizationAttributeSourceAdvisor();
-		ad.setSecurityManager(new DefaultWebSecurityManager());
-		return ad;
-	}
+//	@Bean
+//	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
+//		return new DefaultAdvisorAutoProxyCreator();
+//	}
+//	@Bean
+//	public AuthorizationAttributeSourceAdvisor duthorizationAttributeSourceAdvisor(){
+//		AuthorizationAttributeSourceAdvisor ad=new AuthorizationAttributeSourceAdvisor();
+//		ad.setSecurityManager(new DefaultWebSecurityManager());
+//		return ad;
+//	}
 	
 }

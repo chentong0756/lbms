@@ -18,11 +18,11 @@ public class WebInitializer implements WebApplicationInitializer {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
 		DelegatingFilterProxy de=new DelegatingFilterProxy();
 		de.setTargetFilterLifecycle(true);
-		rootContext.register(ServiceConfig.class, DaoConfig.class);
+		rootContext.register(ServiceConfig.class, DaoConfig.class,ShiroConfig.class);
 		rootContext.setServletContext(container);
 		container.addListener(new ContextLoaderListener(rootContext));
 		container.addFilter("/", new CharacterEncodingFilter("UTF-8"));
-		container.addFilter("/*", de);
+		container.addFilter("/", de);
 		// 管理Spring root application Context生命周期
 		AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
 		dispatcherContext.register(MvcConfig.class);
