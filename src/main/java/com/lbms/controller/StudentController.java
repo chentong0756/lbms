@@ -19,11 +19,11 @@ public class StudentController extends BaseController{
 		String userName=adService.AddStudent(student);
 		if(userName!=null){
 			resultInfo.setCode(200);
-			resultInfo.setObject(userName);
+			resultInfo.setData(userName);
 			
 		}else{
 			resultInfo.setCode(500);
-			resultInfo.setObject(ResultInfo.ADD_ERROR);
+			resultInfo.setData(ResultInfo.ADD_ERROR);
 		}
 		return resultInfo;
 	}
@@ -35,12 +35,12 @@ public class StudentController extends BaseController{
 			student=studentService.GetStudentById(numId);
 			if(student!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(student);
+				resultInfo.setData(student);
 			}
 			return resultInfo;
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 		
 	}
@@ -51,12 +51,12 @@ public class StudentController extends BaseController{
 			Page page=adService.GetStudentByPage(currentPage);
 			if(page!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(page);
+				resultInfo.setData(page);
 				return resultInfo;
 			}
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/student",method=RequestMethod.PUT,consumes="application/json")
@@ -65,13 +65,13 @@ public class StudentController extends BaseController{
 		if(student!=null){
 			if(adService.UpdateStudent(student)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.UPDATE_SUCCESS);
+				resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 				return resultInfo;
 			}
 			
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.UPDATE_ERROR);
+		resultInfo.setData(ResultInfo.UPDATE_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/student/{numId}",method=RequestMethod.DELETE)
@@ -80,13 +80,13 @@ public class StudentController extends BaseController{
 		if(numId!=null){
 			if(adService.DeleteStudentById(numId)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.DELETE_SUCCESS);
+				resultInfo.setData(ResultInfo.DELETE_SUCCESS);
 				return resultInfo;
 			}
 			
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.DELETE_ERROR);
+		resultInfo.setData(ResultInfo.DELETE_ERROR);
 		return resultInfo;
 		
 	}
@@ -98,12 +98,12 @@ public class StudentController extends BaseController{
 			page=teacherService.GetHasOrderStudentByBatchId(batchId, currentPage);
 			if(page!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(page);
+				resultInfo.setData(page);
 				return resultInfo;
 			}
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 		
 	}

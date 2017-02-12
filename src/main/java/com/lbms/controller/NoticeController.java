@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lbms.domain.Notice;
 import com.lbms.domain.Page;
-import com.lbms.domain.Item;
 import com.lbms.util.ResultInfo;
 @RestController
-public class ItemController extends BaseController{
-	@RequestMapping(value="/item" ,method=RequestMethod.POST,consumes="application/json")
-	public ResultInfo Additem(@RequestBody Item item){
+public class NoticeController extends BaseController{
+	@RequestMapping(value="/notice" ,method=RequestMethod.POST,consumes="application/json")
+	public ResultInfo Addnotice(@RequestBody Notice notice){
 		ResultInfo resultInfo=new ResultInfo();
-		if(item!=null){
-			adService.AddNewItem(item);
+		boolean flag=adService.AddNotice(notice);
+		if(flag!=false){
 			resultInfo.setCode(200);
-			resultInfo.setData(ResultInfo.CREATE_SUCCESS);
+			resultInfo.setData(ResultInfo.ADD_SUCCESS);
 			
 		}else{
 			resultInfo.setCode(500);
@@ -26,11 +26,11 @@ public class ItemController extends BaseController{
 		return resultInfo;
 	}
 	
-	@RequestMapping(value="/item/page/{currentPage}",method=RequestMethod.GET)
-	public ResultInfo GetitemByPage(@PathVariable("currentPage")Integer currentPage){
+	@RequestMapping(value="/notice/page/{currentPage}",method=RequestMethod.GET)
+	public ResultInfo GetNoticeByPage(@PathVariable("currentPage")Integer currentPage){
 		ResultInfo resultInfo=new ResultInfo();
 		if(currentPage!=null){
-			Page page=adService.GetItemByPage(currentPage);
+			Page page=adService.GetNoticeByPage(currentPage);
 			if(page!=null){
 				resultInfo.setCode(200);
 				resultInfo.setData(page);
@@ -41,11 +41,11 @@ public class ItemController extends BaseController{
 		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	}
-	@RequestMapping(value="/item",method=RequestMethod.PUT,consumes="application/json")
-	public ResultInfo Updateitem(@RequestBody Item item){
+	@RequestMapping(value="/notice",method=RequestMethod.PUT,consumes="application/json")
+	public ResultInfo Updatenotice(@RequestBody Notice notice){
 		ResultInfo resultInfo=new ResultInfo();
-		if(item!=null){
-			if(adService.UpdateItem(item)){
+		if(notice!=null){
+			if(adService.UpdateNotice(notice)){
 				resultInfo.setCode(200);
 				resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 				return resultInfo;
@@ -56,11 +56,11 @@ public class ItemController extends BaseController{
 		resultInfo.setData(ResultInfo.UPDATE_ERROR);
 		return resultInfo;
 	}
-	@RequestMapping(value="/item/{itemId}",method=RequestMethod.DELETE)
-	public ResultInfo Deleteitem(@PathVariable("itemId")Integer itemId){
+	@RequestMapping(value="/notice/{noticeId}",method=RequestMethod.DELETE)
+	public ResultInfo Deletenotice(@PathVariable("noticeId")Integer noticeId){
 		ResultInfo resultInfo=new ResultInfo();
-		if(itemId!=null){
-			if(adService.DeleteItemById(itemId)){
+		if(noticeId!=null){
+			if(adService.DeleteNoticeById(noticeId)){
 				resultInfo.setCode(200);
 				resultInfo.setData(ResultInfo.DELETE_SUCCESS);
 				return resultInfo;

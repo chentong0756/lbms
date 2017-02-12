@@ -1,7 +1,5 @@
 package com.lbms.domain;
 
-import java.util.Date;
-
 public class Teacher {
     private Integer teaid;
 
@@ -13,7 +11,7 @@ public class Teacher {
 
     private String education;
 
-    private Date date;
+    private String date;
 
     private String contact;
 
@@ -57,11 +55,11 @@ public class Teacher {
         this.education = education;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

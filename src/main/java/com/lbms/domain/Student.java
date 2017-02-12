@@ -1,7 +1,5 @@
 package com.lbms.domain;
 
-import java.util.Date;
-
 public class Student {
     private Integer numid;
 
@@ -13,7 +11,7 @@ public class Student {
 
     private String grade;
 
-    private Date date;
+    private String date;
 
     private String contact;
 
@@ -57,11 +55,11 @@ public class Student {
         this.grade = grade;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

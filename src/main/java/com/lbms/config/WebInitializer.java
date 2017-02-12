@@ -16,13 +16,16 @@ public class WebInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext container) throws ServletException {
 		// 创建 Spring root application Context
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		DelegatingFilterProxy de=new DelegatingFilterProxy();
-		de.setTargetFilterLifecycle(true);
+		DelegatingFilterProxy shiroFilter=new DelegatingFilterProxy();
+		shiroFilter.setTargetFilterLifecycle(true);
 		rootContext.register(ServiceConfig.class, DaoConfig.class,ShiroConfig.class);
-		rootContext.setServletContext(container);
-		container.addListener(new ContextLoaderListener(rootContext));
+		container.addFilter("shiroFilter", shiroFilter).addMappingForUrlPatterns(null, false, "/*");
 		container.addFilter("/", new CharacterEncodingFilter("UTF-8"));
-		container.addFilter("/", de);
+		container.addListener(new ContextLoaderListener(rootContext));
+		rootContext.setServletContext(container);
+		
+		
+		
 		// 管理Spring root application Context生命周期
 		AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
 		dispatcherContext.register(MvcConfig.class);

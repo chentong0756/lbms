@@ -18,11 +18,11 @@ public class AdministratorController extends BaseController{
 		String userName=adService.AddNewAdministrator(administrator);
 		if(userName!=null){
 			resultInfo.setCode(200);
-			resultInfo.setObject(userName);
+			resultInfo.setData(userName);
 			
 		}else{
 			resultInfo.setCode(500);
-			resultInfo.setObject(ResultInfo.ADD_ERROR);
+			resultInfo.setData(ResultInfo.ADD_ERROR);
 		}
 		return resultInfo;
 	}
@@ -34,12 +34,12 @@ public class AdministratorController extends BaseController{
 			administrator=adService.GetAdById(adId);
 			if(administrator!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(administrator);
+				resultInfo.setData(administrator);
 			}
 			return resultInfo;
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 		
 	}
@@ -50,12 +50,12 @@ public class AdministratorController extends BaseController{
 			Page page=adService.GetAdministratorByPage(currentPage);
 			if(page!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(page);
+				resultInfo.setData(page);
 				return resultInfo;
 			}
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/administrator",method=RequestMethod.PUT,consumes="application/json")
@@ -64,13 +64,13 @@ public class AdministratorController extends BaseController{
 		if(administrator!=null){
 			if(adService.UpdateAdministrator(administrator)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.UPDATE_SUCCESS);
+				resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 				return resultInfo;
 			}
 			
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.UPDATE_ERROR);
+		resultInfo.setData(ResultInfo.UPDATE_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/administrator/{adId}",method=RequestMethod.DELETE)
@@ -79,13 +79,13 @@ public class AdministratorController extends BaseController{
 		if(adId!=null){
 			if(adService.DeleteAdministratorById(adId)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.DELETE_SUCCESS);
+				resultInfo.setData(ResultInfo.DELETE_SUCCESS);
 				return resultInfo;
 			}
 			
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.DELETE_ERROR);
+		resultInfo.setData(ResultInfo.DELETE_ERROR);
 		return resultInfo;
 		
 	}

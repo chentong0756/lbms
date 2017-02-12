@@ -9,7 +9,7 @@ public class Cipher {
 
     private Integer numid;
 
-    private String cipher;
+    private String cipher="11111111";
 
     private String power;
 

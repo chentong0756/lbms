@@ -18,11 +18,11 @@ public class TeacherController extends BaseController{
 		String userName=adService.AddTeacher(teacher);
 		if(userName!=null){
 			resultInfo.setCode(200);
-			resultInfo.setObject(userName);
+			resultInfo.setData(userName);
 			
 		}else{
 			resultInfo.setCode(500);
-			resultInfo.setObject(ResultInfo.ADD_ERROR);
+			resultInfo.setData(ResultInfo.ADD_ERROR);
 		}
 		return resultInfo;
 	}
@@ -34,28 +34,28 @@ public class TeacherController extends BaseController{
 			teacher=teacherService.GetTeacherById(teaId);
 			if(teacher!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(teacher);
+				resultInfo.setData(teacher);
 			}
 			return resultInfo;
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 		
 	}
 	@RequestMapping(value="/teacher/page/{currentPage}",method=RequestMethod.GET)
-	public ResultInfo GetteacherByPage(@PathVariable("currentPage")Integer currentPage){
+	public ResultInfo GetTeacherByPage(@PathVariable("currentPage")Integer currentPage){
 		ResultInfo resultInfo=new ResultInfo();
 		if(currentPage!=null){
 			Page page=adService.GetTeacherByPage(currentPage);
 			if(page!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(page);
+				resultInfo.setData(page);
 				return resultInfo;
 			}
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/teacher",method=RequestMethod.PUT,consumes="application/json")
@@ -64,28 +64,28 @@ public class TeacherController extends BaseController{
 		if(teacher!=null){
 			if(teacherService.UpdateTeacher(teacher)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.UPDATE_SUCCESS);
+				resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 				return resultInfo;
 			}
 			
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.UPDATE_ERROR);
+		resultInfo.setData(ResultInfo.UPDATE_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/teacher/{teaId}",method=RequestMethod.DELETE)
-	public ResultInfo Deleteteacher(@PathVariable("numId")Integer teaId){
+	public ResultInfo Deleteteacher(@PathVariable("teaId")Integer teaId){
 		ResultInfo resultInfo=new ResultInfo();
 		if(teaId!=null){
 			if(adService.DeleteTeacherById(teaId)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.DELETE_SUCCESS);
+				resultInfo.setData(ResultInfo.DELETE_SUCCESS);
 				return resultInfo;
 			}
 			
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.DELETE_ERROR);
+		resultInfo.setData(ResultInfo.DELETE_ERROR);
 		return resultInfo;
 		
 	}

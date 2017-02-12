@@ -18,11 +18,11 @@ public class TestController extends BaseController{
 		test=studentService.GetTestByNumAndBatch(batchId, numId);
 		if(test!=null){
 			resultInfo.setCode(200);
-			resultInfo.setObject(test);
+			resultInfo.setData(test);
 			return resultInfo;
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/test",method=RequestMethod.PUT,consumes="application/json")
@@ -30,11 +30,11 @@ public class TestController extends BaseController{
 		ResultInfo resultInfo=new ResultInfo();
 		if(teacherService.UpdateTest(test)){
 			resultInfo.setCode(200);
-			resultInfo.setObject(test);
+			resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 			return resultInfo;
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	} 
 

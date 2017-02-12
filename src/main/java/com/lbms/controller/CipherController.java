@@ -10,41 +10,41 @@ import com.lbms.util.ResultInfo;
 @RestController
 public class CipherController extends BaseController{
 	
-	@RequestMapping(value="/cipher/student",method=RequestMethod.PUT)
+	@RequestMapping(value="/cipher/student",method=RequestMethod.POST)
 	public ResultInfo UpdateCipherByStudent(@RequestParam("password")String password,@RequestParam("numId")Integer numId){
 		ResultInfo resultInfo=new ResultInfo();
 		if(studentService.UpdateCipherByStudentId(password, numId)){
 			resultInfo.setCode(200);
-			resultInfo.setObject(ResultInfo.UPDATE_SUCCESS);
+			resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 			return resultInfo;
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.UPDATE_ERROR);
+		resultInfo.setData(ResultInfo.UPDATE_ERROR);
 		return resultInfo;
 	}
-	@RequestMapping(value="/cipher/teacher",method=RequestMethod.PUT)
+	@RequestMapping(value="/cipher/teacher",method=RequestMethod.POST)
 	public ResultInfo UpdateCipherByTeacher(@RequestParam("password")String password,@RequestParam("teaId")Integer teaId){
 		ResultInfo resultInfo=new ResultInfo();
 		if(teacherService.UpdateCipherByTeacherId(password, teaId)){
 			resultInfo.setCode(200);
-			resultInfo.setObject(ResultInfo.UPDATE_SUCCESS);
+			resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 			return resultInfo;
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.UPDATE_ERROR);
+		resultInfo.setData(ResultInfo.UPDATE_ERROR);
 		return resultInfo;
 	}
 	
-	@RequestMapping(value="/cipher/administrator",method=RequestMethod.PUT)
+	@RequestMapping(value="/cipher/administrator",method=RequestMethod.POST)
 	public ResultInfo UpdateCipherByAdministrator(@RequestParam("password")String password,@RequestParam("adId")Integer adId){
 		ResultInfo resultInfo=new ResultInfo();
 		if(adService.UpdateCipherByAdministratorId(password, adId)){
 			resultInfo.setCode(200);
-			resultInfo.setObject(ResultInfo.UPDATE_SUCCESS);
+			resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 			return resultInfo;
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.UPDATE_ERROR);
+		resultInfo.setData(ResultInfo.UPDATE_ERROR);
 		return resultInfo;
 	}
 }

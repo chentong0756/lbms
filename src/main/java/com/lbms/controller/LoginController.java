@@ -13,12 +13,13 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.lbms.util.ResultInfo;
-
+@RestController
 public class LoginController extends BaseController{
 	
-	@RequestMapping(value="/login",method=RequestMethod.POST,consumes="application/json")
+	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ResultInfo Login(@RequestParam("userName")String userName,@RequestParam("password")String password){
 			ResultInfo resultInfo=new ResultInfo();
 		    UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
@@ -28,40 +29,40 @@ public class LoginController extends BaseController{
 	            subject.login(token);
 	            if (subject.isAuthenticated()) {
 	            	resultInfo.setCode(200);
-	            	resultInfo.setObject(ResultInfo.LOGIN_SUCCESS);
+	            	resultInfo.setData(ResultInfo.LOGIN_SUCCESS);
 	                return resultInfo;
 	            } else {
 	            	resultInfo.setCode(500);
-	            	resultInfo.setObject(ResultInfo.PASSWORD_ERROR);
+	            	resultInfo.setData(ResultInfo.PASSWORD_ERROR);
 	                return resultInfo;
 	            }
 	        } catch (IncorrectCredentialsException e) {
 	        	resultInfo.setCode(500);
-            	resultInfo.setObject(ResultInfo.PASSWORD_ERROR);
+            	resultInfo.setData(ResultInfo.PASSWORD_ERROR);
                 return resultInfo;
 	        } catch (ExcessiveAttemptsException e) {
 	        	resultInfo.setCode(501);
-            	resultInfo.setObject(ResultInfo.LOGIN_MANY);
+            	resultInfo.setData(ResultInfo.LOGIN_MANY);
                 return resultInfo;
 	        } catch (LockedAccountException e) {
 	        	resultInfo.setCode(502);
-            	resultInfo.setObject(ResultInfo.USER_LOCK);
+            	resultInfo.setData(ResultInfo.USER_LOCK);
                 return resultInfo;
 	        } catch (DisabledAccountException e) {
 	        	resultInfo.setCode(502);
-            	resultInfo.setObject(ResultInfo.USER_LOCK);
+            	resultInfo.setData(ResultInfo.USER_LOCK);
                 return resultInfo;
 	        } catch (ExpiredCredentialsException e) {
 	        	resultInfo.setCode(502);
-            	resultInfo.setObject(ResultInfo.USER_LOCK);
+            	resultInfo.setData(ResultInfo.USER_LOCK);
                 return resultInfo;
 	        } catch (UnknownAccountException e) {
 	        	resultInfo.setCode(502);
-            	resultInfo.setObject(ResultInfo.USER_LOCK);
+            	resultInfo.setData(ResultInfo.USER_LOCK);
                 return resultInfo;
 	        } catch (UnauthorizedException e) {
 	        	resultInfo.setCode(503);
-            	resultInfo.setObject(ResultInfo.USER_LOCK);
+            	resultInfo.setData(ResultInfo.USER_LOCK);
                 return resultInfo;
 	        }
 	}

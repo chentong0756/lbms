@@ -18,11 +18,11 @@ public class BatchController extends BaseController{
 		if(batch!=null){
 			adService.AddNewBatch(batch);
 			resultInfo.setCode(200);
-			resultInfo.setObject(ResultInfo.CREATE_SUCCESS);
+			resultInfo.setData(ResultInfo.CREATE_SUCCESS);
 			
 		}else{
 			resultInfo.setCode(500);
-			resultInfo.setObject(ResultInfo.ADD_ERROR);
+			resultInfo.setData(ResultInfo.ADD_ERROR);
 		}
 		return resultInfo;
 	}
@@ -34,12 +34,12 @@ public class BatchController extends BaseController{
 			Page page=adService.GetBatchByPage(currentPage);
 			if(page!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(page);
+				resultInfo.setData(page);
 				return resultInfo;
 			}
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/batch",method=RequestMethod.PUT,consumes="application/json")
@@ -48,13 +48,13 @@ public class BatchController extends BaseController{
 		if(batch!=null){
 			if(adService.UpdateBatch(batch)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.UPDATE_SUCCESS);
+				resultInfo.setData(ResultInfo.UPDATE_SUCCESS);
 				return resultInfo;
 			}
 			
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.UPDATE_ERROR);
+		resultInfo.setData(ResultInfo.UPDATE_ERROR);
 		return resultInfo;
 	}
 	@RequestMapping(value="/batch/{batchId}",method=RequestMethod.DELETE)
@@ -63,13 +63,13 @@ public class BatchController extends BaseController{
 		if(batchId!=null){
 			if(adService.DeleteBatchById(batchId)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.DELETE_SUCCESS);
+				resultInfo.setData(ResultInfo.DELETE_SUCCESS);
 				return resultInfo;
 			}
 			
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.DELETE_ERROR);
+		resultInfo.setData(ResultInfo.DELETE_ERROR);
 		return resultInfo;
 		
 	}
@@ -79,12 +79,12 @@ public class BatchController extends BaseController{
 		if(batchId!=null&&numId!=null){
 			if(studentService.OrderBatchById(batchId, numId)){
 				resultInfo.setCode(200);
-				resultInfo.setObject(ResultInfo.CREATE_SUCCESS);
+				resultInfo.setData(ResultInfo.CREATE_SUCCESS);
 				return resultInfo;
 			}
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.ORDER_ERROR);
+		resultInfo.setData(ResultInfo.ORDER_ERROR);
 		return resultInfo;
 				
 	}
@@ -96,12 +96,12 @@ public class BatchController extends BaseController{
 			batches=studentService.GetHasOrderBatch(numId, currentPage);
 			if(batches!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(batches);
+				resultInfo.setData(batches);
 				return resultInfo;
 			}
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 				
 	}
@@ -113,12 +113,12 @@ public class BatchController extends BaseController{
 			batches=teacherService.GetBatchById(teaId, currentPage);
 			if(batches!=null){
 				resultInfo.setCode(200);
-				resultInfo.setObject(batches);
+				resultInfo.setData(batches);
 				return resultInfo;
 			}
 		}
 		resultInfo.setCode(500);
-		resultInfo.setObject(ResultInfo.GET_ERROR);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 				
 	}

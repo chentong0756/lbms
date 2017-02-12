@@ -115,7 +115,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 			cipher.setTeaid(teaId);
 			cipher.setUsername(userName);
 			cipher.setPower("2");
-			cipherDao.insert(cipher);
+			cipherDao.insertSelective(cipher);
 			return userName;
 			
 		}
@@ -157,6 +157,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 			cipher.setUsername(userName);
 			cipher.setNumid(numId);
 			cipher.setPower("3");
+			cipherDao.insertSelective(cipher);
 			return userName;
 		}
 			
@@ -218,7 +219,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 	public boolean UpdateNotice(Notice notice) {
 		// TODO Auto-generated method stub
 		if(noticeDao.updateByPrimaryKey(notice)!=0)
-			return false;
+			return true;
 		return false;
 	}
 
@@ -242,6 +243,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 			cipher.setUsername(userName);
 			cipher.setAdmid(adId);
 			cipher.setPower("1");
+			cipherDao.insertSelective(cipher);
 			return userName;
 		}
 		return null;

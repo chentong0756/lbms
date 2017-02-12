@@ -13,23 +13,25 @@ public class ResultInfo {
 	public final static String LOGIN_SUCCESS="登录成功";
 	public final static String LOGIN_MANY="登录失败次数过多";
 	public final static String USER_LOCK="用户已被锁定";
+	public final static String ADD_SUCCESS="添加成功";
 	
 	
 	
 	private int code;
-	private Object object;
+	private Object data;
 	public int getCode() {
 		return code;
 	}
 	public void setCode(int code) {
 		this.code = code;
 	}
-	public Object getObject() {
-		return object;
+	public Object getData() {
+		return data;
 	}
-	public void setObject(Object object) {
-		this.object = object;
+	public void setData(Object data) {
+		this.data = data;
 	}
+	
 	
 	
 

@@ -26,6 +26,7 @@
 			<tx:method name="Remove*" propagation="REQUIRED" />
 			<tx:method name="Register*" propagation="REQUIRED" />
 			<tx:method name="Repair" propagation="REQUIRED" />
+			<tx:method name="Order*" propagation="REQUIRED" />
 			<tx:method name="Get*" propagation="REQUIRED" read-only="true" />
 			<tx:method name="Find*" propagation="REQUIRED" read-only="true" />
 			<tx:method name="Load*" propagation="REQUIRED" read-only="true" />

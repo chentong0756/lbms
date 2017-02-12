@@ -57,7 +57,7 @@ public class UserRealm extends AuthorizingRealm{
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken authcToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        Cipher cipher=cipherDao.LoginValidate(token.getUsername(), token.getUsername());
+        Cipher cipher=cipherDao.LoginValidate(token.getUsername(), String.valueOf(token.getPassword()));
         if(cipher!=null){
         	if(cipher.getPower().equals("0"))
         		this.setSession("user","root");
@@ -68,9 +68,10 @@ public class UserRealm extends AuthorizingRealm{
         	}else if(cipher.getPower().equals("3")){
         		this.setSession("user","student");
         	}
-        	AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(cipher.getUsername(), cipher.getUsername(), this.getName());
+        	AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(cipher.getUsername(), cipher.getCipher(), this.getName());
             authcInfo.getCredentials();
             return authcInfo;
+            
         }
         return null;
           

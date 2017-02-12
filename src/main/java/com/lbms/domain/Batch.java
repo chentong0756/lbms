@@ -1,7 +1,5 @@
 package com.lbms.domain;
 
-import java.util.Date;
-
 public class Batch {
     private Integer batid;
 
@@ -11,7 +9,7 @@ public class Batch {
 
     private String laboratory;
 
-    private Date date;
+    private String date;
 
     private String segmentation;
 
@@ -49,11 +47,11 @@ public class Batch {
         this.laboratory = laboratory;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

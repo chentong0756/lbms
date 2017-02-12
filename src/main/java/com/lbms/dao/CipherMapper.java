@@ -57,19 +57,19 @@ public interface CipherMapper {
 	        "set cipher = #{cipher,jdbcType=VARCHAR} ",
 	        "where admid = #{adId,jdbcType=INTEGER}"
 	    })
-	    int updateByAdId(String cipher, Integer adId);
+	    int updateByAdId(@Param("cipher")String cipher, @Param("adId")Integer adId);
 	    @Update({
 	        "update cipher",
 	        "set cipher = #{cipher,jdbcType=VARCHAR} ",
-	        "where numid = #{numId,jdbcType=INTEGER}"
+	        "where numid = #{numid,jdbcType=INTEGER}"
 	    })
-	    int updateByNumId(String cipher, Integer numId);
+	    int updateByNumId(@Param("cipher")String cipher, @Param("numid")Integer numId);
 	    @Update({
 	        "update cipher",
 	        "set cipher = #{cipher,jdbcType=VARCHAR} ",
 	        "where teaid = #{teaId,jdbcType=INTEGER}"
 	    })
-	    int updateByTeaId(String cipher, Integer teaId);
+	    int updateByTeaId(@Param("cipher")String cipher, @Param("teaId")Integer teaId);
 	    
 	    Cipher LoginValidate(@Param("userName")String userName,@Param("password")String password);
 	    Cipher GetUserByUserName(@Param("userName")String userName);

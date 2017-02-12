@@ -56,7 +56,7 @@
     </set>
     where noticeid = #{noticeid,jdbcType=INTEGER}
   </update>
-  <select id="getNoticeByPage" resultType="com.lbms.domain.Item">
+  <select id="getNoticeByPage" resultType="com.lbms.domain.Notice">
    select * from notice
    		limit #{startindex},#{pagesize}
   </select>

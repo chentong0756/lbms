@@ -72,7 +72,7 @@ public class TeacherServiceImpl implements TeacherService{
 	public boolean UpdateTest(Test test) {
 		// TODO Auto-generated method stub
 		if(test!=null){
-			testDao.insert(test);
+			testDao.updateByPrimaryKeySelective(test);
 			return true;
 		}
 		return false;

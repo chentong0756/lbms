@@ -30,17 +30,17 @@ public class ShiroConfig {
 	public UserRealm userRealm(){
 		return new UserRealm();
 	}
-	@Bean
+	@Bean(name="shiroFilter")
 	public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager){
 		ShiroFilterFactoryBean shiroFilter=new ShiroFilterFactoryBean();
 		shiroFilter.setSecurityManager(securityManager);
 		shiroFilter.setLoginUrl("/login");
 		shiroFilter.setUnauthorizedUrl("/");
-		String shiroFilterChainDefinitions="/login=anno "
-				+ "/administrator=authc,perms[root:0] "
-				+ "/student/**=authc,perms[admin:1] "
-				+ "/student=perms[user:UPDATE] "
-				+ "/student=perms[user:GET] ";
+		String shiroFilterChainDefinitions="/login=anon\n"
+				+ "/administrator=authc,perms[root:0]\n"
+				+ "/student/**=authc,perms[admin:1]\n"
+				+ "/student=perms[user:UPDATE]\n"
+				+ "/student=perms[user:GET]";
 		shiroFilter.setFilterChainDefinitions(shiroFilterChainDefinitions);
 		return shiroFilter;
 	}
