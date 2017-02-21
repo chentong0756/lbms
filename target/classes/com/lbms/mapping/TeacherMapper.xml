@@ -91,11 +91,14 @@
 		count(*) from teacher
   
   </select>
-  <select id="getItemByPage" resultType="com.lbms.domain.Teacher">
+  <select id="getTeacherByPage" resultType="com.lbms.domain.Teacher">
    select * from teacher 
    		limit #{startindex},#{pagesize}
   </select>
   <select id="selectLastId" resultType="int">  
          select LAST_INSERT_ID()   
+  </select>
+  <select id="getTeacherByName" resultType="com.lbms.domain.Teacher">
+  	select * from teacher where name=#{name}
   </select> 
 </mapper>

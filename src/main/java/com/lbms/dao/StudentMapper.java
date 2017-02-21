@@ -59,6 +59,9 @@ public interface StudentMapper {
 			@Param(value = "pagesize") int pagesize);
     List<Student> getHasOrderStudent(@Param(value="batId")int batId, @Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);
-    List<Batch> getHasOrderBatch(@Param(value="numId")Integer numId, @Param(value = "startindex") int startindex,
+    List<Batch> getHasOrderBatch(@Param(value="numId")Integer numId);
+    List<Student> getStudentByGrade(@Param(value ="grade") String grade,@Param(value = "startindex") int startindex,
+			@Param(value = "pagesize") int pagesize);
+    List<Student> getStudentBySpecial(@Param(value ="special") String special,@Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);
 }

@@ -1,5 +1,6 @@
 package com.lbms.service;
 
+import com.lbms.domain.Batch;
 import com.lbms.domain.Page;
 import com.lbms.domain.Teacher;
 import com.lbms.domain.Test;
@@ -13,4 +14,5 @@ public interface TeacherService {
 	public Page GetNoticeByPage(Integer currentPage);
 	public boolean UpdateCipherByTeacherId(String password,Integer teaId);
 	public Teacher GetTeacherById(Integer teaId);
+	public Batch GetBatById(Integer Id);
 }

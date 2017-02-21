@@ -36,12 +36,12 @@ public class ShiroConfig {
 		shiroFilter.setSecurityManager(securityManager);
 		shiroFilter.setLoginUrl("/login");
 		shiroFilter.setUnauthorizedUrl("/");
-		String shiroFilterChainDefinitions="/login=anon\n"
-				+ "/administrator=authc,perms[root:0]\n"
-				+ "/student/**=authc,perms[admin:1]\n"
-				+ "/student=perms[user:UPDATE]\n"
-				+ "/student=perms[user:GET]";
-		shiroFilter.setFilterChainDefinitions(shiroFilterChainDefinitions);
+//		String shiroFilterChainDefinitions="/login=anon\n"
+//				+ "/administrator=authc,perms[root:0]\n"
+//				+ "/student/**=authc,perms[admin:1]\n"
+//				+ "/student=perms[user:UPDATE]\n"
+//				+ "/student=perms[user:GET]";
+//		shiroFilter.setFilterChainDefinitions(shiroFilterChainDefinitions);
 		return shiroFilter;
 	}
 //	@Bean

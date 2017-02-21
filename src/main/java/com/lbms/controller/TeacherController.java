@@ -89,4 +89,21 @@ public class TeacherController extends BaseController{
 		return resultInfo;
 		
 	}
+	@RequestMapping(value="/teacher/name/{name}",method=RequestMethod.GET)
+	public ResultInfo GetTeacherByName(@PathVariable("name")String name){
+		ResultInfo resultInfo=new ResultInfo();
+		Teacher page=null;
+		if(name!=null){
+			page=adService.GetTeacherByName(name);
+			if(page!=null){
+				resultInfo.setCode(200);
+				resultInfo.setData(page);
+			}
+			return resultInfo;
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
+		
+	}
 }

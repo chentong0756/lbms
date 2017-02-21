@@ -72,5 +72,20 @@ public class ItemController extends BaseController{
 		return resultInfo;
 		
 	}
+	@RequestMapping(value="/item/{itemId}",method=RequestMethod.GET)
+	public ResultInfo GetitemById(@PathVariable("itemId")Integer itemId){
+		ResultInfo resultInfo=new ResultInfo();
+		if(itemId!=null){
+			Item item=adService.GetItemById(itemId);
+			if(item!=null){
+				resultInfo.setCode(200);
+				resultInfo.setData(item);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
+	}
 
 }

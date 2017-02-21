@@ -80,4 +80,8 @@
   		select * from test where batid=#{batId} and numid=#{numId}
   
   </select>
+  <select id="selectByBatch" resultType="com.lbms.domain.Test">
+  		select * from test where batid=#{batId}
+  
+  </select>
 </mapper>

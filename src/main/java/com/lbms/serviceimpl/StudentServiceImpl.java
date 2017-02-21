@@ -36,15 +36,10 @@ public class StudentServiceImpl implements StudentService{
 		return false;
 	}
 
-	public Page GetHasOrderBatch(Integer num, int currentPage) {
+	public List<Batch> GetHasOrderBatch(Integer num) {
 		// TODO Auto-generated method stub
-		int totalRecord=studentDao.getAllRecord();
-		int pagesize=Const.INDEX_INFORMATION_PAGE_SIZE;
-		Page page=new Page(currentPage,pagesize,totalRecord);
-		int startindex=(currentPage-1)*pagesize;
-		List<Batch> batches=studentDao.getHasOrderBatch(num, startindex, pagesize);
-		page.setRecordList(batches);
-		return page;
+		List<Batch> batches=studentDao.getHasOrderBatch(num);
+		return batches;
 	}
 
 	public boolean OrderBatchById(Integer batchId,Integer numId) {
@@ -62,7 +57,9 @@ public class StudentServiceImpl implements StudentService{
 
 	public Test GetTestByNumAndBatch(Integer batchId, Integer numId) {
 		// TODO Auto-generated method stub
-		return null;
+		Test test=null;
+		test=testDao.selectByNumAndBatch(batchId, numId);
+		return test;
 	}
 
 	public Page GetNoticeByPage(Integer currentPage) {
@@ -92,7 +89,10 @@ public class StudentServiceImpl implements StudentService{
 		return studentDao.selectByPrimaryKey(numId);
 		
 	}
-	
+
+	public List<Test> getTestByBatch(Integer batId){
+		return testDao.selectByBatch(batId);
+	}
 	
 
 }

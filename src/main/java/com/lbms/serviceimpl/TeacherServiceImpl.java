@@ -111,6 +111,11 @@ public class TeacherServiceImpl implements TeacherService{
 		// TODO Auto-generated method stub
 		return teacherDao.selectByPrimaryKey(teaId);
 	}
+
+	public Batch GetBatById(Integer Id) {
+		// TODO Auto-generated method stub
+		return batchDao.selectByPrimaryKey(Id);
+	}
 	
 	
 

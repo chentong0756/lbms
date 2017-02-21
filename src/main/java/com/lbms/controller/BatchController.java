@@ -1,5 +1,7 @@
 package com.lbms.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,22 @@ public class BatchController extends BaseController{
 			resultInfo.setCode(500);
 			resultInfo.setData(ResultInfo.ADD_ERROR);
 		}
+		return resultInfo;
+	}
+
+	@RequestMapping(value="/batch/{batId}",method=RequestMethod.GET)
+	public ResultInfo GetbatchById(@PathVariable("batId")Integer batId){
+		ResultInfo resultInfo=new ResultInfo();
+		if(batId!=null){
+			Batch batch=teacherService.GetBatById(batId);
+			if(batch!=null){
+				resultInfo.setCode(200);
+				resultInfo.setData(batch);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	}
 	
@@ -88,12 +106,12 @@ public class BatchController extends BaseController{
 		return resultInfo;
 				
 	}
-	@RequestMapping(value="/batch/student/{numId}&{currentPage}",method=RequestMethod.GET)
-	public ResultInfo GetBatchByStudent(@PathVariable("numId")Integer numId,@PathVariable("currentPage")Integer currentPage){
+	@RequestMapping(value="/batch/student/{numId}",method=RequestMethod.GET)
+	public ResultInfo GetBatchByStudent(@PathVariable("numId")Integer numId){
 		ResultInfo resultInfo=new ResultInfo();
-		Page batches=null;
+		List<Batch> batches=null;
 		if(numId!=null){
-			batches=studentService.GetHasOrderBatch(numId, currentPage);
+			batches=studentService.GetHasOrderBatch(numId);
 			if(batches!=null){
 				resultInfo.setCode(200);
 				resultInfo.setData(batches);

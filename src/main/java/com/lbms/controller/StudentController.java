@@ -90,7 +90,7 @@ public class StudentController extends BaseController{
 		return resultInfo;
 		
 	}
-	@RequestMapping(value="/student/{batchId}&{currentPage}",method=RequestMethod.GET)
+	@RequestMapping(value="/student/{batchId}/{currentPage}",method=RequestMethod.GET)
 	public ResultInfo GetStudentByBatch(@PathVariable("batchId")Integer batchId,@PathVariable("currentPage")Integer currentPage){
 		ResultInfo resultInfo=new ResultInfo();
 		Page page=null;
@@ -106,5 +106,35 @@ public class StudentController extends BaseController{
 		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 		
+	}
+	@RequestMapping(value="/student/page/grade/{grade}&{currentPage}",method=RequestMethod.GET)
+	public ResultInfo GetStudentByGrade(@PathVariable("grade")String grade,@PathVariable("currentPage")Integer currentPage){
+		ResultInfo resultInfo=new ResultInfo();
+		if(currentPage!=null){
+			Page page=adService.GetStudentByGrade(grade,currentPage);
+			if(page!=null){
+				resultInfo.setCode(200);
+				resultInfo.setData(page);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
+	}
+	@RequestMapping(value="/student/page/special/{special}&{currentPage}",method=RequestMethod.GET)
+	public ResultInfo GetStudentBySpecial(@PathVariable("special")String specail,@PathVariable("currentPage")Integer currentPage){
+		ResultInfo resultInfo=new ResultInfo();
+		if(currentPage!=null){
+			Page page=adService.GetStudentBySpecial(specail,currentPage);
+			if(page!=null){
+				resultInfo.setCode(200);
+				resultInfo.setData(page);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
 	}
 }

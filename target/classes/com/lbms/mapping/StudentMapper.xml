@@ -96,14 +96,21 @@
    		limit #{startindex},#{pagesize}
   </select>
   <select id="getHasOrderStudent" resultType="com.lbms.domain.Student">
-  	 select * from Student where numid in (select * from test where batid=#{batId})
+  	 select * from student where numid in (select numid from test where batid=#{batId})
    		limit #{startindex},#{pagesize}
   </select>
   <select id="getHasOrderBatch" resultType="com.lbms.domain.Batch">
-  	 select * from batch where batid in (select * from test where numid=#{numId})
-   		limit #{startindex},#{pagesize}
+  	 select * from batch where batid in (select batid from test where numid=#{numId})
   </select>
   <select id="selectLastId" resultType="int">  
          select LAST_INSERT_ID()   
   </select> 
+  <select id="getStudentByGrade" resultType="com.lbms.domain.Student">
+   select * from student where grade like CONCAT('%',#{grade},'%') 
+   		limit #{startindex},#{pagesize}
+  </select>
+  <select id="getStudentBySpecial" resultType="com.lbms.domain.Student">
+   select * from student where specialization like CONCAT('%',#{special},'%') 
+   		limit #{startindex},#{pagesize}
+  </select>
 </mapper>

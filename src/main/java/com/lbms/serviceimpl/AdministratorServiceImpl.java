@@ -20,6 +20,7 @@ import com.lbms.domain.Notice;
 import com.lbms.domain.Page;
 import com.lbms.domain.Student;
 import com.lbms.domain.Teacher;
+import com.lbms.domain.Test;
 import com.lbms.service.AdministratorService;
 import com.lbms.util.Const;
 import com.lbms.util.UUIDUtil;
@@ -76,7 +77,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 
 	public boolean AddNewBatch(Batch batch) {
 		// TODO Auto-generated method stub
-		if(batchDao.insert(batch)!=0)
+		if(batchDao.insertSelective(batch)!=0)
 			return true;
 		return false;
 	}
@@ -108,7 +109,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 
 	public String AddTeacher(Teacher teacher) {
 		// TODO Auto-generated method stub
-		if(teacherDao.insert(teacher)!=0){
+		if(teacherDao.insertSelective(teacher)!=0){
 			int teaId=teacherDao.selectLastId();
 			String userName=UUIDUtil.generateShortUuid();
 			Cipher cipher=new Cipher();
@@ -203,7 +204,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 
 	public boolean AddNotice(Notice notice) {
 		// TODO Auto-generated method stub
-		if(noticeDao.insert(notice)!=0)
+		if(noticeDao.insertSelective(notice)!=0)
 			return true;
 		
 		return false;
@@ -287,7 +288,42 @@ public class AdministratorServiceImpl implements AdministratorService{
 		
 		return adDao.selectByPrimaryKey(adId);
 	}
-	
-	
 
+	public Teacher GetTeacherByName(String name) {
+		// TODO Auto-generated method stub;
+		Teacher teacheres=teacherDao.getTeacherByName(name);
+		
+		return teacheres;
+	}
+
+	public Page GetStudentByGrade(String grade, int currentPage) {
+		// TODO Auto-generated method stub
+		int totalRecord=studentDao.getAllRecord();
+		int pagesize=Const.INDEX_INFORMATION_PAGE_SIZE;
+		Page page=new Page(currentPage,pagesize,totalRecord);
+		int startindex=(currentPage-1)*pagesize;
+		List<Student> students=studentDao.getStudentByGrade(grade, startindex, pagesize);
+		page.setRecordList(students);
+		return page;
+	}
+
+	public Page GetStudentBySpecial(String special, int currentPage) {
+		// TODO Auto-generated method stub
+		int totalRecord=studentDao.getAllRecord();
+		int pagesize=Const.INDEX_INFORMATION_PAGE_SIZE;
+		Page page=new Page(currentPage,pagesize,totalRecord);
+		int startindex=(currentPage-1)*pagesize;
+		List<Student> students=studentDao.getStudentBySpecial(special, startindex, pagesize);
+		page.setRecordList(students);
+		return page;
+	}
+
+	public Item GetItemById(int itemId) {
+		// TODO Auto-generated method stub
+		return itemDao.selectByPrimaryKey(itemId);
+	}
+
+	
+	
+	
 }

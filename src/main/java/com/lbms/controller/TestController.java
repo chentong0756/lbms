@@ -1,5 +1,7 @@
 package com.lbms.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,5 +39,19 @@ public class TestController extends BaseController{
 		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	} 
+	@RequestMapping(value="/test/batch/{batchId}",method=RequestMethod.GET)
+	public ResultInfo GetTestByBatch(@PathVariable("batchId")Integer batchId){
+		ResultInfo resultInfo=new ResultInfo();
+		List<Test> test=null;
+		test=studentService.getTestByBatch(batchId);
+		if(test!=null){
+			resultInfo.setCode(200);
+			resultInfo.setData(test);
+			return resultInfo;
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
+	}
 
 }
