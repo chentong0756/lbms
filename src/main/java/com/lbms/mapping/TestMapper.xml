@@ -84,4 +84,14 @@
   		select * from test where batid=#{batId}
   
   </select>
+  <select id="getAverageByGrade" resultType="String">
+  		select avg(results) from  test
+  </select>
+  <select id="getHighByGrade" resultType="String">
+  		select max(results) from test
+  </select>
+  <select id="getLowByGrade" resultType="String">
+  		select min(results) from test
+  </select>
+  		
 </mapper>

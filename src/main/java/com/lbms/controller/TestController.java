@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lbms.domain.Test;
+import com.lbms.dto.SumInformation;
 import com.lbms.util.ResultInfo;
 
 @RestController
@@ -48,6 +49,19 @@ public class TestController extends BaseController{
 		if(test!=null){
 			resultInfo.setCode(200);
 			resultInfo.setData(test);
+			return resultInfo;
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
+	}
+	@RequestMapping(value="/test/suminformation/{grade}",method=RequestMethod.GET)
+	public ResultInfo GetSumInformation(@PathVariable("grade")String grade){
+		ResultInfo resultInfo=new ResultInfo();
+		SumInformation informations=studentService.GetSumInformation(grade);
+		if(informations!=null){
+			resultInfo.setCode(200);
+			resultInfo.setData(informations);
 			return resultInfo;
 		}
 		resultInfo.setCode(500);

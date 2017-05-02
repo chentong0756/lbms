@@ -14,6 +14,7 @@ import com.lbms.domain.Notice;
 import com.lbms.domain.Page;
 import com.lbms.domain.Student;
 import com.lbms.domain.Test;
+import com.lbms.dto.SumInformation;
 import com.lbms.service.StudentService;
 import com.lbms.util.Const;
 
@@ -92,6 +93,20 @@ public class StudentServiceImpl implements StudentService{
 
 	public List<Test> getTestByBatch(Integer batId){
 		return testDao.selectByBatch(batId);
+	}
+
+	public SumInformation GetSumInformation(String grade) {
+		// TODO Auto-generated method stub
+		SumInformation sumInformation=null;
+		if(grade!=null){
+			sumInformation=new SumInformation();
+			sumInformation.setAverage(testDao.getAverageByGrade(grade));
+			sumInformation.setGrade(grade);
+			sumInformation.setHigh(testDao.getHighByGrade(grade));
+			sumInformation.setLow(testDao.getLowByGrade(grade));
+		}
+		
+		return sumInformation;
 	}
 	
 

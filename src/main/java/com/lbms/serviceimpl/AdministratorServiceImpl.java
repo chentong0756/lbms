@@ -111,13 +111,12 @@ public class AdministratorServiceImpl implements AdministratorService{
 		// TODO Auto-generated method stub
 		if(teacherDao.insertSelective(teacher)!=0){
 			int teaId=teacherDao.selectLastId();
-			String userName=UUIDUtil.generateShortUuid();
 			Cipher cipher=new Cipher();
 			cipher.setTeaid(teaId);
-			cipher.setUsername(userName);
+			cipher.setUsername(teacher.getUsername());
 			cipher.setPower("2");
 			cipherDao.insertSelective(cipher);
-			return userName;
+			return String.valueOf(teaId);
 			
 		}
 			
@@ -153,13 +152,12 @@ public class AdministratorServiceImpl implements AdministratorService{
 		// TODO Auto-generated method stub
 		if(studentDao.insert(student)!=0){
 			int numId=studentDao.selectLastId();
-			String userName=UUIDUtil.generateShortUuid();
 			Cipher cipher=new Cipher();
-			cipher.setUsername(userName);
+			cipher.setUsername(student.getUsername());
 			cipher.setNumid(numId);
 			cipher.setPower("3");
 			cipherDao.insertSelective(cipher);
-			return userName;
+			return String.valueOf(numId);
 		}
 			
 		return null;
@@ -239,13 +237,12 @@ public class AdministratorServiceImpl implements AdministratorService{
 		// TODO Auto-generated method stub
 		if(adDao.insert(ad)!=0){
 			int adId=adDao.selectLastId();
-			String userName=UUIDUtil.generateShortUuid();
 			Cipher cipher=new Cipher();
-			cipher.setUsername(userName);
+			cipher.setUsername(ad.getUsername());
 			cipher.setAdmid(adId);
 			cipher.setPower("1");
 			cipherDao.insertSelective(cipher);
-			return userName;
+			return String.valueOf(adId);
 		}
 		return null;
 		

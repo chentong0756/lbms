@@ -2,7 +2,9 @@ package com.lbms.domain;
 
 public class Student {
     private Integer numid;
-
+    
+    private String username;
+    
     private String name;
 
     private String sex;
@@ -70,4 +72,13 @@ public class Student {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+    
 }

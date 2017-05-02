@@ -20,9 +20,9 @@ public interface AdministratorMapper {
 
     @Insert({
         "insert into administrator (admid, itemid, ",
-        "name, sex, contact)",
+        "name, sex, contact,username)",
         "values (#{admid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, ",
-        "#{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR})"
+        "#{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR})"
     })
     int insert(Administrator record);
 
@@ -30,7 +30,7 @@ public interface AdministratorMapper {
 
     @Select({
         "select",
-        "admid, itemid, name, sex, contact",
+        "admid, itemid, name, sex, contact,username",
         "from administrator",
         "where admid = #{admid,jdbcType=INTEGER}"
     })
@@ -45,6 +45,7 @@ public interface AdministratorMapper {
           "name = #{name,jdbcType=VARCHAR},",
           "sex = #{sex,jdbcType=VARCHAR},",
           "contact = #{contact,jdbcType=VARCHAR}",
+          "username = #{username,jdbcType=VARCHAR}",
         "where admid = #{admid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Administrator record);

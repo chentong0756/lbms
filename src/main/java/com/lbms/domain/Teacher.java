@@ -3,6 +3,7 @@ package com.lbms.domain;
 public class Teacher {
     private Integer teaid;
 
+    private String username;
     private String name;
 
     private String sex;
@@ -70,4 +71,13 @@ public class Teacher {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+    
 }

@@ -100,7 +100,7 @@
    		limit #{startindex},#{pagesize}
   </select>
   <select id="getHasOrderBatch" resultType="com.lbms.domain.Batch">
-  	 select * from batch where batid in (select batid from test where numid=#{numId})
+  	 select * from batch where batid in (select batid from test where numid=#{numId}) order by date
   </select>
   <select id="selectLastId" resultType="int">  
          select LAST_INSERT_ID()   

@@ -21,10 +21,10 @@ public interface TeacherMapper {
     @Insert({
         "insert into teacher (teaid, name, ",
         "sex, title, education, ",
-        "date, contact)",
+        "date, contact, username)",
         "values (#{teaid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
         "#{sex,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, ",
-        "#{date,jdbcType=TIMESTAMP}, #{contact,jdbcType=VARCHAR})"
+        "#{date,jdbcType=TIMESTAMP}, #{contact,jdbcType=VARCHAR}，#{username,jdbcType=VARCHAR})"
     })
     int insert(Teacher record);
 
@@ -32,7 +32,7 @@ public interface TeacherMapper {
 
     @Select({
         "select",
-        "teaid, name, sex, title, education, date, contact",
+        "teaid, name, sex, title, education, date, contact,username",
         "from teacher",
         "where teaid = #{teaid,jdbcType=INTEGER}"
     })
@@ -49,6 +49,7 @@ public interface TeacherMapper {
           "education = #{education,jdbcType=VARCHAR},",
           "date = #{date,jdbcType=TIMESTAMP},",
           "contact = #{contact,jdbcType=VARCHAR}",
+          "username = #{username,jdbcType=VARCHAR}",
         "where teaid = #{teaid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Teacher record);

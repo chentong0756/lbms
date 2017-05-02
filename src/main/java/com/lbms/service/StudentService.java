@@ -6,6 +6,7 @@ import com.lbms.domain.Batch;
 import com.lbms.domain.Page;
 import com.lbms.domain.Student;
 import com.lbms.domain.Test;
+import com.lbms.dto.SumInformation;
 
 public interface StudentService {
 	
@@ -17,7 +18,7 @@ public interface StudentService {
 	public boolean UpdateCipherByStudentId(String password,Integer numId);
 	public Student GetStudentById(Integer numId);
 	public List<Test> getTestByBatch(Integer batId);
-	
+	public SumInformation GetSumInformation(String grade);
 	
 
 }
