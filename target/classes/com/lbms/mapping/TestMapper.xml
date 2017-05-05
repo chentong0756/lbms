@@ -85,13 +85,13 @@
   
   </select>
   <select id="getAverageByGrade" resultType="String">
-  		select avg(results) from  test
+  		select avg(results) from  test where batid=#{batchid} and grade=#{grade}
   </select>
   <select id="getHighByGrade" resultType="String">
-  		select max(results) from test
+  		select max(results) from test where batid=#{batchid} and grade=#{grade}
   </select>
   <select id="getLowByGrade" resultType="String">
-  		select min(results) from test
+  		select min(results) from test where batid=#{batchid} and grade=#{grade}
   </select>
   		
 </mapper>

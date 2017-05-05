@@ -33,7 +33,7 @@
 			<tx:method name="Search*" propagation="REQUIRED" read-only="true" />
 			<tx:method name="Datagrid*" propagation="REQUIRED"
 				read-only="true" />
-			<tx:method name="*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" read-only="false" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>

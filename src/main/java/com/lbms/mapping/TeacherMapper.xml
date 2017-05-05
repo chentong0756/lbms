@@ -9,9 +9,10 @@
     <result column="education" jdbcType="VARCHAR" property="education" />
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
   </resultMap>
   <sql id="Base_Column_List">
-    teaid, name, sex, title, education, date, contact
+    teaid, name, sex, title, education, date, contact,username
   </sql>
   <insert id="insertSelective" parameterType="com.lbms.domain.Teacher">
     insert into teacher
@@ -37,6 +38,9 @@
       <if test="contact != null">
         contact,
       </if>
+       <if test="username != null">
+        username,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="teaid != null">
@@ -60,6 +64,9 @@
       <if test="contact != null">
         #{contact,jdbcType=VARCHAR},
       </if>
+       <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.lbms.domain.Teacher">
@@ -82,6 +89,9 @@
       </if>
       <if test="contact != null">
         contact = #{contact,jdbcType=VARCHAR},
+      </if>
+       <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
       </if>
     </set>
     where teaid = #{teaid,jdbcType=INTEGER}

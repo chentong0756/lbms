@@ -13,7 +13,7 @@ public class Batch {
 
     private String segmentation;
 
-    private Boolean sure;
+    private int sure=0;
 
     public Integer getBatid() {
         return batid;
@@ -63,11 +63,11 @@ public class Batch {
         this.segmentation = segmentation;
     }
 
-    public Boolean getSure() {
+    public int getSure() {
         return sure;
     }
 
-    public void setSure(Boolean sure) {
+    public void setSure(int sure) {
         this.sure = sure;
     }
 }

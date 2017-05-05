@@ -1,5 +1,7 @@
 package com.lbms.service;
 
+import java.util.List;
+
 import com.lbms.domain.Batch;
 import com.lbms.domain.Page;
 import com.lbms.domain.Teacher;
@@ -15,4 +17,9 @@ public interface TeacherService {
 	public boolean UpdateCipherByTeacherId(String password,Integer teaId);
 	public Teacher GetTeacherById(Integer teaId);
 	public Batch GetBatById(Integer Id);
+	public List<Batch> GetBatchByName(String name);
+	public List<Batch> GetBatchByDate(String date);
+	public boolean CancelOrder(Integer batchId);
+	public List<Batch> orderedBatch();
+	public boolean OrderedBatches(Integer teaId,Integer batchId);
 }

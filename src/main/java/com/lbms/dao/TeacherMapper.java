@@ -57,5 +57,5 @@ public interface TeacherMapper {
     int getAllRecord();
     List<Teacher> getTeacherByPage(@Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);
-   Teacher getTeacherByName(@Param("name")String name);
+    Teacher getTeacherByName(@Param("name")String name);
 }

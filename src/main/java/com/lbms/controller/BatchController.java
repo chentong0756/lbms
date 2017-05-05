@@ -140,7 +140,78 @@ public class BatchController extends BaseController{
 		return resultInfo;
 				
 	}
+	@RequestMapping(value="/batch/itemname/{name}",method=RequestMethod.GET)
+	public ResultInfo GetBatchByName(@PathVariable("name")String name){
+		ResultInfo resultInfo=new ResultInfo();
+		List<Batch> batches=null;
+		if(name!=null){
+			batches=teacherService.GetBatchByName(name);
+			if(batches!=null){
+				resultInfo.setCode(200);
+				resultInfo.setData(batches);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
+	}
 	
+	@RequestMapping(value="/batch/date/{time}",method=RequestMethod.GET)
+	public ResultInfo GetBatchByDate(@PathVariable("time")String date){
+		ResultInfo resultInfo=new ResultInfo();
+		List<Batch> batches=null;
+		if(date!=null){
+			batches=teacherService.GetBatchByDate(date);
+			if(batches!=null){
+				resultInfo.setCode(200);
+				resultInfo.setData(batches);
+				return resultInfo;
+			}
+		}
+		resultInfo.setCode(500);
+		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
+	}
 	
-
+	@RequestMapping(value="/batch/needapprove",method=RequestMethod.GET)
+	public ResultInfo GetNeedApprove(){
+		ResultInfo resultInfo=new ResultInfo();
+		List<Batch> batches=null;
+		batches=adService.getNeedApprove();
+		if(batches!=null){
+			resultInfo.setCode(200);
+			resultInfo.setData(batches);
+		}else{
+			resultInfo.setCode(500);
+			resultInfo.setData(ResultInfo.GET_ERROR);
+		}
+		return resultInfo;
+	}
+	@RequestMapping(value="/batch/approve/{batchId}",method=RequestMethod.GET)
+	public ResultInfo ApproveApply(@PathVariable("batchId")String batchId){
+		ResultInfo resultInfo=new ResultInfo();
+		if(adService.approveApp(Integer.valueOf(batchId))){
+			resultInfo.setCode(200);
+			resultInfo.setData("");
+		}else{
+			resultInfo.setCode(500);
+			resultInfo.setData("");
+		}
+		return resultInfo;
+	}
+	@RequestMapping(value="/batch/teacherorder",method=RequestMethod.GET)
+	public ResultInfo TeacherHasOrder(){
+		ResultInfo resultInfo=new ResultInfo();
+		List<Batch> batches=null;
+		batches=adService.getStudentNeedOrder();
+		if(batches!=null){
+			resultInfo.setCode(200);
+			resultInfo.setData(batches);
+		}else{
+			resultInfo.setCode(500);
+			resultInfo.setData(ResultInfo.GET_ERROR);
+		}
+		return resultInfo;
+	}
 }

@@ -59,4 +59,12 @@ public interface BatchMapper {
 			@Param(value = "pagesize") int pagesize);
     List<Batch> getBatchByTeaId(@Param(value="teaId")Integer teaId,@Param(value = "startindex") int startindex,
 			@Param(value = "pagesize") int pagesize);
+    List<Batch> getBatchByName(@Param(value="name")String name);
+    List<Batch> getBatchByDate(@Param(value="date")String date);
+    int cancelOrder(@Param(value="batchId")Integer batchId);
+    List<Batch> getOrdered();
+    int approveOrder(@Param(value="batchId")Integer batchId);
+    List<Batch> getNeedApprove();
+    int orderedBatch(@Param(value="batchId")Integer batchId,@Param(value="teaId")Integer teaId);
+    List<Batch> getTeacherHasOrder();
 }

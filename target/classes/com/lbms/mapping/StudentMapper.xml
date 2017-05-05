@@ -9,9 +9,10 @@
     <result column="grade" jdbcType="VARCHAR" property="grade" />
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
   </resultMap>
   <sql id="Base_Column_List">
-    numid, name, sex, specialization, grade, date, contact
+    numid, name, sex, specialization, grade, date, contact,username
   </sql>
   <insert id="insertSelective" parameterType="com.lbms.domain.Student">
     insert into student
@@ -37,6 +38,9 @@
       <if test="contact != null">
         contact,
       </if>
+      <if test="username != null">
+        username,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="numid != null">
@@ -59,6 +63,9 @@
       </if>
       <if test="contact != null">
         #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -83,6 +90,9 @@
       <if test="contact != null">
         contact = #{contact,jdbcType=VARCHAR},
       </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
     </set>
     where numid = #{numid,jdbcType=INTEGER}
   </update>
@@ -92,12 +102,12 @@
   
   </select>
   <select id="getStudentByPage" resultType="com.lbms.domain.Student">
-   select * from student 
+   select * from student order by grade asc,username asc
    		limit #{startindex},#{pagesize}
   </select>
   <select id="getHasOrderStudent" resultType="com.lbms.domain.Student">
   	 select * from student where numid in (select numid from test where batid=#{batId})
-   		limit #{startindex},#{pagesize}
+   		order by grade asc,username asc limit #{startindex},#{pagesize}
   </select>
   <select id="getHasOrderBatch" resultType="com.lbms.domain.Batch">
   	 select * from batch where batid in (select batid from test where numid=#{numId}) order by date
@@ -106,11 +116,11 @@
          select LAST_INSERT_ID()   
   </select> 
   <select id="getStudentByGrade" resultType="com.lbms.domain.Student">
-   select * from student where grade like CONCAT('%',#{grade},'%') 
+   select * from student where grade like CONCAT('%',#{grade},'%') order by grade asc,username asc 
    		limit #{startindex},#{pagesize}
   </select>
   <select id="getStudentBySpecial" resultType="com.lbms.domain.Student">
-   select * from student where specialization like CONCAT('%',#{special},'%') 
+   select * from student where specialization like CONCAT('%',#{special},'%')  order by grade asc,username asc
    		limit #{startindex},#{pagesize}
   </select>
 </mapper>

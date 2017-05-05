@@ -18,7 +18,7 @@ public interface StudentService {
 	public boolean UpdateCipherByStudentId(String password,Integer numId);
 	public Student GetStudentById(Integer numId);
 	public List<Test> getTestByBatch(Integer batId);
-	public SumInformation GetSumInformation(String grade);
+	public SumInformation GetSumInformation(String grade,String batchid);
 	
 
 }

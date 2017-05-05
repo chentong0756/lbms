@@ -1,13 +1,19 @@
 package com.lbms.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lbms.domain.Page;
 import com.lbms.domain.Student;
+import com.lbms.util.ReadExcel;
 import com.lbms.util.ResultInfo;
 
 @RestController
@@ -135,6 +141,29 @@ public class StudentController extends BaseController{
 		}
 		resultInfo.setCode(500);
 		resultInfo.setData(ResultInfo.GET_ERROR);
+		return resultInfo;
+	}
+	@RequestMapping(value="/student/multitude",method=RequestMethod.POST)
+	public ResultInfo InsertManyStudentInfo(@RequestParam("student")MultipartFile student){
+		ResultInfo resultInfo=new ResultInfo();
+		if(student==null){
+			resultInfo.setCode(500);
+			resultInfo.setData("文件为空");
+		}else{
+			try{
+				List<Student> students=ReadExcel.readXls(student.getInputStream());
+				List<String> usernames=new ArrayList<String>();
+				for(Student stu:students){
+					usernames.add(adService.AddStudent(stu));
+				}
+				resultInfo.setCode(200);
+				resultInfo.setData(usernames);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+		}
 		return resultInfo;
 	}
 }

@@ -39,7 +39,7 @@ public class TeacherServiceImpl implements TeacherService{
 	public boolean UpdateTeacher(Teacher teacher) {
 		// TODO Auto-generated method stub
 		if(teacher!=null){
-			teacherDao.updateByPrimaryKey(teacher);
+			teacherDao.updateByPrimaryKeySelective(teacher);
 			return true;
 		}
 			
@@ -116,6 +116,39 @@ public class TeacherServiceImpl implements TeacherService{
 		// TODO Auto-generated method stub
 		return batchDao.selectByPrimaryKey(Id);
 	}
+
+	public List<Batch> GetBatchByName(String name) {
+		// TODO Auto-generated method stub
+		
+		return batchDao.getBatchByName(name);
+	}
+
+	public List<Batch> GetBatchByDate(String date) {
+		// TODO Auto-generated method stub
+		return batchDao.getBatchByDate(date);
+	}
+
+	public boolean CancelOrder(Integer batchId) {
+		// TODO Auto-generated method stub
+		if(batchDao.cancelOrder(batchId)!=0)
+			return true;
+		return false;
+	}
+
+	public List<Batch> orderedBatch() {
+		// TODO Auto-generated method stub
+		
+		return batchDao.getOrdered();
+	}
+
+	public boolean OrderedBatches(Integer teaId, Integer batchId) {
+		// TODO Auto-generated method stub
+		if(batchDao.orderedBatch(batchId, teaId)!=0)
+			return true;
+		return false;
+	}
+	
+	
 	
 	
 

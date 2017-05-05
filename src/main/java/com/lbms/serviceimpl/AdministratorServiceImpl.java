@@ -116,7 +116,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 			cipher.setUsername(teacher.getUsername());
 			cipher.setPower("2");
 			cipherDao.insertSelective(cipher);
-			return String.valueOf(teaId);
+			return teacher.getUsername();
 			
 		}
 			
@@ -125,7 +125,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 
 	public boolean UpdateTeacher(Teacher teacher) {
 		// TODO Auto-generated method stub
-		if(teacherDao.updateByPrimaryKey(teacher)!=0)
+		if(teacherDao.updateByPrimaryKeySelective(teacher)!=0)
 			return true;
 		return false;
 	}
@@ -172,7 +172,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 
 	public boolean UpdateStudent(Student student) {
 		// TODO Auto-generated method stub
-		if(studentDao.updateByPrimaryKey(student)!=0)
+		if(studentDao.updateByPrimaryKeySelective(student)!=0)
 			return true;
 		return false;
 	}
@@ -250,7 +250,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 
 	public boolean UpdateAdministrator(Administrator ad) {
 		// TODO Auto-generated method stub
-		if(adDao.updateByPrimaryKey(ad)!=0)
+		if(adDao.updateByPrimaryKeySelective(ad)!=0)
 			return true;
 		return false;
 	}
@@ -318,6 +318,27 @@ public class AdministratorServiceImpl implements AdministratorService{
 	public Item GetItemById(int itemId) {
 		// TODO Auto-generated method stub
 		return itemDao.selectByPrimaryKey(itemId);
+	}
+
+	public boolean approveApp(Integer batchId) {
+		// TODO Auto-generated method stub
+		
+		if(batchDao.approveOrder(batchId)!=0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public List<Batch> getNeedApprove() {
+		// TODO Auto-generated method stub
+		
+		return batchDao.getNeedApprove();
+	}
+
+	public List<Batch> getStudentNeedOrder() {
+		// TODO Auto-generated method stub
+		return batchDao.getTeacherHasOrder();
 	}
 
 	

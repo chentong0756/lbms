@@ -92,12 +92,36 @@
   
   </select>
   <select id="getBatchByPage" resultType="com.lbms.domain.Batch">
-   select * from batch 
+   select * from batch order by date asc,segmentation asc
+   		limit #{startindex},#{pagesize} 
+  </select>
+  <select id="getBatchByTeaId" resultType="com.lbms.domain.Batch">
+   select * from batch where teaid=#{teaId} and sure=2 order by date asc,segmentation asc
    		limit #{startindex},#{pagesize}
   </select>
-   <select id="getBatchByTeaId" resultType="com.lbms.domain.Batch">
-   select * from batch where teaid=#{teaId}
-   		limit #{startindex},#{pagesize}
+  <select id="getBatchByName" resultType="com.lbms.domain.Batch">
+  	select * from batch where (select itemid from item where itemname=#{name}) =itemid order by date desc
+  </select>
+  <select id="getBatchByDate" resultType="com.lbms.domain.Batch">
+  	select * from batch where date=#{date} order by date asc,segmentation asc  
+  </select>
+  <update id="cancelOrder" parameterType="Integer">
+  	  update batch set sure=0 ,teaid=null where batid=#{batchId}
+  </update>
+  <select id="getOrdered" resultType="com.lbms.domain.Batch">
+  	select * from batch where sure=0 order by date asc,segmentation asc
+  </select>
+  <update id="approveOrder" parameterType="Integer">
+    update batch set sure=2  where batid=#{batchId}
+  </update>
+  <select id="getNeedApprove" resultType="com.lbms.domain.Batch">
+  	select * from batch where sure=1 order by date asc,segmentation asc
+  </select>
+  <update id="orderedBatch" parameterType="Integer">
+   update batch set sure=1,teaid=#{teaId} where batid=#{batchId}
+  </update>
+  <select id="getTeacherHasOrder" resultType="com.lbms.domain.Batch">
+  	select * from batch where sure=2 order by date asc,segmentation asc
   </select>
   
 </mapper>

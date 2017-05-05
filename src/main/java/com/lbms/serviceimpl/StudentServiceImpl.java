@@ -95,15 +95,15 @@ public class StudentServiceImpl implements StudentService{
 		return testDao.selectByBatch(batId);
 	}
 
-	public SumInformation GetSumInformation(String grade) {
+	public SumInformation GetSumInformation(String grade,String batchid) {
 		// TODO Auto-generated method stub
 		SumInformation sumInformation=null;
 		if(grade!=null){
 			sumInformation=new SumInformation();
-			sumInformation.setAverage(testDao.getAverageByGrade(grade));
+			sumInformation.setAverage(testDao.getAverageByGrade(grade,batchid));
 			sumInformation.setGrade(grade);
-			sumInformation.setHigh(testDao.getHighByGrade(grade));
-			sumInformation.setLow(testDao.getLowByGrade(grade));
+			sumInformation.setHigh(testDao.getHighByGrade(grade,batchid));
+			sumInformation.setLow(testDao.getLowByGrade(grade,batchid));
 		}
 		
 		return sumInformation;

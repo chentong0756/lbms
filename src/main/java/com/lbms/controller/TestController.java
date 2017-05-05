@@ -1,6 +1,5 @@
 package com.lbms.controller;
 
-import java.sql.DriverManager;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,10 +54,11 @@ public class TestController extends BaseController{
 		resultInfo.setData(ResultInfo.GET_ERROR);
 		return resultInfo;
 	}
-	@RequestMapping(value="/test/suminformation/{grade}",method=RequestMethod.GET)
-	public ResultInfo GetSumInformation(@PathVariable("grade")String grade){
+	@RequestMapping(value="/test/suminformation/{grade}/{batchid}",method=RequestMethod.GET)
+	public ResultInfo GetSumInformation(@PathVariable("grade")String grade,@PathVariable("batchid")String batchid){
 		ResultInfo resultInfo=new ResultInfo();
-		SumInformation informations=studentService.GetSumInformation(grade);
+		SumInformation informations=studentService.GetSumInformation(grade,batchid);
+		System.out.println(grade+"   "+batchid);
 		if(informations!=null){
 			resultInfo.setCode(200);
 			resultInfo.setData(informations);

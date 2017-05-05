@@ -55,9 +55,9 @@ public interface TestMapper {
     Test selectByNumAndBatch(@Param("batId")Integer batId, @Param("numId")Integer numId);
     List<Test> selectByBatch(@Param("batId")Integer batId);
     
-    String getAverageByGrade(@Param("grade")String grade);
-    String getHighByGrade(@Param("grade")String grade);
-    String getLowByGrade(@Param("grade")String grade);
+    String getAverageByGrade(@Param("grade")String grade,@Param("batchid")String batchid);
+    String getHighByGrade(@Param("grade")String grade,@Param("batchid")String batchid);
+    String getLowByGrade(@Param("grade")String grade,@Param("batchid")String batchid);
     
     
 }

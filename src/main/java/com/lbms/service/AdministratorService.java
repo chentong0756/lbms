@@ -1,5 +1,7 @@
 package com.lbms.service;
 
+import java.util.List;
+
 import com.lbms.domain.Administrator;
 import com.lbms.domain.Batch;
 import com.lbms.domain.Item;
@@ -51,8 +53,10 @@ public interface AdministratorService {
 	public boolean UpdateCipherByAdministratorId(String password,Integer adId);
 	public Administrator GetAdById(Integer adId);
 	
+	public boolean approveApp(Integer batchId);
 	
-	
+	public List<Batch> getNeedApprove();
+	public List<Batch> getStudentNeedOrder();
 	
 	
 }
